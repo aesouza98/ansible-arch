@@ -1,40 +1,40 @@
 user:
-    name: lg
-    fullname: Lorenzo Gaggini
+    name: adriano.elias
+    fullname: Adriano Elias
     uid: 1001
-    group: lg
-    shell: /bin/bash
-    email: lg@lgaggini.net
-    other_emails:
-      - lgaggini@gmail.com
+    group: adriano.elias
+    shell: /bin/zsh
+    email: nanoesouza@outlook.com
 
-timezone: Europe/Rome
-locale: it_IT.UTF-8
-keymap: it
+timezone: America/Sao_Paulo
+locale: pt_BR.UTF-8
+keymap: br-abnt2
 
-hostname: thule
+hostname: Arch
 
 dotfiles:
-    url: https://github.com/lgaggini/dotfiles.git
-    destination: code/lgaggini/dotfiles
+    url: https://github.com/nanoesouza/dotfiles.git
+    destination: code/nanoesouza/dotfiles
 
 plug:
     url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     destination: .vim/autoload/plug.vim
 
 home_skel:
-    - bak
+    - backup
     - bin
-    - cal
-    - code/lgaggini
-    - doc/lgaggini
-    - down
-    - logs
-    - mail
-    - note
-    - read
-    - tmp
-    - vms
+    - Documentos
+    - code/nanoesouza
+    - Downloads
+    - Games
+    - git
+    - Imagens
+    - Música
+    - Plugins
+    - remmina
+    - scripts
+    - Vídeos
+    - Área de Trabalho
 
 core_utils:
     - binutils
@@ -60,15 +60,19 @@ core_utils:
     - pkgfile
     - mlocate
     - make
-    - linux-lts
     - ttf-dejavu
     - ttf-hack
     - bat
     - exa
     - python-neovim
-    - pbzip2
-    - ctags
     - shellcheck
+    - sof-firmware
+    - zsh
+    - fd
+    - git-crypt
+    - tldr
+    - yq
+    - z
 core_debugutils:
     - strace
     - lsof
@@ -77,6 +81,7 @@ core_debugutils:
     - sysstat
     - ncdu
     - hyperfine
+    - bpytop
 core_netutils:
     - net-tools
     - curl
@@ -118,40 +123,20 @@ gui_core:
     - xorg-xrandr
     - xcape
     - xorg-xprop
+    - plasma-wayland-session
+    - xf86-input-libinput
 gui_video_drivers:
     - xf86-video-vesa
 gui_ui:
-    - awesome
-    - vicious
-    - rxvt-unicode
-    - rxvt-unicode-terminfo
+    - plasma
+    - kde-applications
 gui_utility:
-    - volumeicon
-    - qt5ct
-    - lxappearance
-    - xfce4-power-manager
-    - xfce4-screenshooter
-    - i3lock
-    - redshift
-    - arandr
-    - unclutter
-    - xautolock
+    - kvantum-manager
     - gnome-keyring
-    - seahorse
-    - feh
-    - numlockx
-    - autorandr
-gui_themes:
-    - elementary-icon-theme
-    - gnome-themes-extra
+
 gui_aur:
-    - eminent-git
-    - lain-git
-    - awesome-freedesktop-git
-    - urxvt-resize-font-git
     - ttf-nerd-fonts-hack-complete-git
-    - i3lock-fancy-git
-    - rofi-greenclip
+    - plasma5-applets-virtual-desktop-bar-git
 
 tools:
     - file-roller
@@ -165,58 +150,43 @@ tools:
     - gitg
     - leafpad
     - workrave
-
-mail:
-    - neomutt
-    - offlineimap
-    - msmtp
-    - notmuch-runtime
-    - gpgme
-    - urlscan
-mail_aur:
-    - lbdb
-mail_account:
-    name: account
-    imap_host: imap.account
-    imap_ssl: yes
-    imap_port: 993
-    smtp_host: smtp.account
-    smtp_auth: "on"
-    smtp_username: lg
-    smtp_tls: "on"
-    smtp_port: 587
-
-pim:
-   - vdirsyncer
-   - pass
-pim_aur:
-   - todoman-git
-   - khal-git
-   - davmail
-pim_account:
-   name: account
-   url: caldav_url
+    - gparted
+    - unzip
+    - barrier
+    - bitwarden
+    - obsidian
+    - remmina
+    - youtube-dl
+    - steam
+tools_aur:
+    - bottles
+    - bsnes-hd
+    - fontfinder
+    - libpamac-aur
+    - notion-app-enhanced
+    - ocs-url
+    - onlyoffice-bin
+    - stacer
+    - touche
+    - touchegg
+    - mailspring-desktop
 
 audio_core:
   - alsa-utils
-  - pulseaudio
-  - pulseaudio-alsa
-  - pavucontrol
+  - pipewire
+  - pipewire-alsa
+  - easyeffects
 audio_players:
-  - mpd
-  - mpc
-  - ncmpcpp
+  - vlc
 audio_aur:
-  - soundcloud-dl-git
-audio_skel:
-  - .mpd
-  - media/music/trance/livesets
+  - spotify
+  - stremio
+  - spicetify-cli
 
 backup:
-  - restic
   - rsync
 backup_remote:
-  enable: true
+  enable: false
   user: lgaggini
   key: "%h/.ssh/backup_key"
   destination: backup.server/mybackup
@@ -229,6 +199,8 @@ ops_gui:
   - wireshark-qt
 ops_aur:
   - puppet-lint
+  - tfswitch-bin
+  - mongodb-compass
 
 virt_cli:
   - docker
@@ -238,29 +210,16 @@ virt_gui:
 
 dev:
   python:
-    - subversion
-    - ipython2
-    - ipython
     - python-pip
     - python2-pip
     - python2-virtualenv
     - python-virtualenv
     - python-virtualenvwrapper
-    - pelican
-    - flake8
 
 comm:
-    - weechat
-    - pidgin
-    - purple-skypeweb
+    - discord
 
-media_core:
-    - mpv
-media_gui:
-    - gnome-mpv
-media_skel:
-    - media/video/film
-    - media/video/serietv
-    - media/video/it
-    - media/video/doc
-    - media/video/sport
+flatpak:
+  - com.brave.Browser
+  - com.visualstudio.code
+  - com.anydesk.Anydesk
