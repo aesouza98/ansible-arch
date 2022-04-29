@@ -29,11 +29,12 @@ The follow roles are done:
 ## Plan
 To come:
 * to set communications account
+* make the same stuff but on others distros
 
 ## Install
 ### Clone
 ```bash
-git clone https://github.com/lgaggini/ansible-arch
+git clone https://github.com/nanoesouza/ansible-arch
 ```
 
 ### Requirements
