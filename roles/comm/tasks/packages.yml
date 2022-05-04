@@ -1,6 +1,0 @@
----
-- name: Install comm packages
-  pacman: name={{ comm }} state=present
-  tags:
-    - packages
-    - cli

@@ -1,0 +1,7 @@
+---
+- name: Enable systemd-timesyncd unit
+  systemd: 
+    daemon_reload: yes
+    name: systemd-timesyncd
+    enabled: yes
+  become: yes

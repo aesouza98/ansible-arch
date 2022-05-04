@@ -1,0 +1,4 @@
+---
+- include: pacman.yml
+- include: aur.yml
+- include: flatpak.yml

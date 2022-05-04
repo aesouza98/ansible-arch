@@ -1,0 +1,43 @@
+---
+- name: Install KDE Plasma packages
+  pacman: 
+    name: {{ plasma }}
+    state: present
+
+- name: Install KDE Plasma Tools packages
+  pacman: 
+    name: {{ plasma_tools }}
+    state: present
+
+- name: Install KDE Plasma AUR packages
+  shell: yay --noconfirm -S {{ item }}
+  with_items: "{{ plasma_aur }}"
+  when: core_aur is defined
+  become: yes
+  become_user: "{{ user.name }}"
+
+- name: Enable SDDM service
+  ansible.builtin.systemd:
+    name: sddm.service
+    state: started
+    enabled: yes
+
+- name: Clone KDE dotfiles
+  git: 
+    repo: {{ plasma_dotfiles.url }} 
+    dest: /home/{{ user.name }}/{{ plasma_dotfiles.destination }}
+    accept_hostkey: yes 
+    update: yes 
+    key_file: {{ plasma_dotfiles.key }}
+  become: yes
+  become_user: "{{ user.name }}"
+
+- name: Install KDE dotfiles
+  synchronize: 
+    src: /home/{{ user.name }}/{{ plasma_dotfiles.destination }}/ 
+    dest: /home/{{ user.name }}/ 
+    archive: yes
+    rsync_opts: --exclude=.git,--exclude=_config.yml,--exclude=LICENSE,--exclude=README.md
+  delegate_to: "{{ inventory_hostname }}"
+  become: yes
+  become_user: "{{ user.name }}"

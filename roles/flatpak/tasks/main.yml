@@ -1,8 +1,0 @@
----
-- name: Install flatpak packages
-  flatpak: name={{ flatpaks }} state=present
-  tags:
-    - packages
-    - cli
-    - flatpak
-

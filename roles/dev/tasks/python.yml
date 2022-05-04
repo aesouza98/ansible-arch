@@ -1,7 +1,0 @@
----
-- name: Install python dev packages
-  pacman: name={{ dev.python }} state=present
-  tags:
-    - packages
-    - python
-    - cli

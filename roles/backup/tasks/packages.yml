@@ -1,7 +1,0 @@
----
-- name: Install backup packages
-  pacman: name={{ backup }} state=present
-  tags:
-    - packages
-    - cli
-    - backup
