@@ -2,13 +2,7 @@
 - hosts: all
   become: yes
   roles:
-    - { role: archcore, tags: ['core', 'cli', 'gui'] }
-    - { role: dotfiles, tags: ['dotfiles', 'cli', 'gui'] }
-    - { role: x, tags: ['x', 'gui'] }
-    - { role: tools, tags: ['tools', 'gui'] }
-    - { role: audio, tags: ['audio', 'cli', 'gui'] }
-    - { role: backup, tags: ['backup', 'cli', 'gui'] }
-    - { role: ops, tags: ['ops', 'cli', 'gui'] }
-    - { role: virt, tags: ['virt', 'cli', 'gui'] }
-    - { role: dev, tags: ['dev', 'python', 'cli', 'gui'] }
-    - { role: comm, tags: ['comm', 'cli', 'gui'] }
+    - { role: Core, tags: 'core' }
+    - { role: User, tags: 'user' }
+    - { role: Desktop, tags: 'desktop' }
+    - { role: Packages, tags: 'packages' }

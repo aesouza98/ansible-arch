@@ -1,3 +1,5 @@
+newpass: tocofome
+
 user:
     name: adriano.elias
     fullname: Adriano Elias
@@ -5,16 +7,19 @@ user:
     group: adriano.elias
     shell: /bin/zsh
     email: nanoesouza@outlook.com
+    password: "{{ newpass|password_hash('sha512')}}"
 
 timezone: America/Sao_Paulo
 locale: pt_BR.UTF-8
 keymap: br-abnt2
 
 hostname: Arch
+desktop: plasma
 
 dotfiles:
-    url: https://github.com/nanoesouza/dotfiles.git
+    url: git@github.com:nanoesouza/dotfiles.git
     destination: code/nanoesouza/dotfiles
+    key: /home/adriano.elias/.ssh/ansible
 
 plug:
     url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -35,8 +40,9 @@ home_skel:
     - scripts
     - Vídeos
     - Área de Trabalho
+    - .ssh
 
-core_utils:
+core_packages:
     - binutils
     - bash
     - bash-completion
@@ -73,16 +79,56 @@ core_utils:
     - tldr
     - yq
     - z
-core_debugutils:
-    - strace
-    - lsof
-    - htop
-    - glances
-    - sysstat
-    - ncdu
-    - hyperfine
-    - bpytop
-core_netutils:
+
+core_aur:
+    - byobu
+    - diff-so-fancy
+
+desktop_core:
+    - xorg-server
+    - xorg-xinit
+    - xorg-xmodmap
+    - xorg-xev
+    - acpilight
+    - xorg-xrandr
+    - xcape
+    - xorg-xprop
+    - xf86-video-vesa
+
+plasma:
+    - plasma
+    - kde-applications
+    - plasma-wayland-session
+
+plasma_tools:
+    - kvantum
+    - latte-dock
+    - xf86-input-libinput
+
+plasma_aur:
+    - touche
+    - touchegg
+
+plasma_dotfiles:
+    url: git@github.com:nanoesouza/plasma_dotfiles.git
+    destination: code/nanoesouza/plasma_dotfiles
+    key: /home/adriano.elias/.ssh/ansible
+gnome: 
+    - gnome
+    - gnome-extra
+    - network-manager-openvpn-gnome
+    - network-manager-openvpn
+
+gnome_tools:
+    - gnome-tweaks
+    - gnome-themes-extra
+
+gnome_aur:
+    - menda-themes-dark-git
+    - yaru-gnome-shell-theme
+    - orchis-theme-git
+
+pkg_netutils:
     - net-tools
     - curl
     - wget
@@ -105,51 +151,32 @@ core_netutils:
     - wpa_supplicant
     - wireless_tools
     - ipcalc
-core_goodies:
+    - python-pip
+    - python-virtualenv
+    - python-virtualenvwrapper
+    - docker
+    - virtualbox
+    - vagrant
+    - strace
+    - lsof
+    - htop
+    - glances
+    - sysstat
+    - ncdu
+    - hyperfine
+    - bpytop
+    - rsync
+    - ansible
+    - ansible-lint
+    - wireshark-cli
+
+pkg_others:
     - neofetch
     - fortune-mod
     - cowsay
-core_aur:
-    - byobu
-    - diff-so-fancy
-    - git-delta-bin
 
-gui_core:
-    - xorg-server
-    - xorg-xinit
-    - xorg-xmodmap
-    - xorg-xev
-    - acpilight
-    - xorg-xrandr
-    - xcape
-    - xorg-xprop
-    - plasma-wayland-session
-    - xf86-input-libinput
-gui_video_drivers:
-    - xf86-video-vesa
-gui_ui:
-    - plasma
-    - kde-applications
-gui_utility:
-    - kvantum-manager
-    - gnome-keyring
-
-gui_aur:
-    - ttf-nerd-fonts-hack-complete-git
-    - plasma5-applets-virtual-desktop-bar-git
-
-tools:
-    - file-roller
-    - zathura
-    - zathura-pdf-mupdf
-    - lxtask
-    - gvim
-    - vim-spell-it
-    - python-neovim
-    - firefox-i18n-it
+pkg_tools:
     - gitg
-    - leafpad
-    - workrave
     - gparted
     - unzip
     - barrier
@@ -158,68 +185,32 @@ tools:
     - remmina
     - youtube-dl
     - steam
-tools_aur:
+    - discord
+    - gnome-keyring
+    - alsa-utils
+    - pipewire
+    - pipewire-alsa
+    - easyeffects
+    - vlc
+
+pkg_aur:
     - bottles
     - bsnes-hd
-    - fontfinder
     - libpamac-aur
     - notion-app-enhanced
     - ocs-url
     - onlyoffice-bin
     - stacer
-    - touche
-    - touchegg
-    - mailspring-desktop
-
-audio_core:
-  - alsa-utils
-  - pipewire
-  - pipewire-alsa
-  - easyeffects
-audio_players:
-  - vlc
-audio_aur:
-  - spotify
-  - stremio
-  - spicetify-cli
-
-backup:
-  - rsync
-backup_remote:
-  enable: false
-  user: lgaggini
-  key: "%h/.ssh/backup_key"
-  destination: backup.server/mybackup
-
-ops_cli:
-  - ansible
-  - ansible-lint
-  - wireshark-cli
-ops_gui:
-  - wireshark-qt
-ops_aur:
-  - puppet-lint
-  - tfswitch-bin
-  - mongodb-compass
-
-virt_cli:
-  - docker
-virt_gui:
-  - virtualbox
-  - vagrant
-
-dev:
-  python:
-    - python-pip
-    - python2-pip
-    - python2-virtualenv
-    - python-virtualenv
-    - python-virtualenvwrapper
-
-comm:
-    - discord
+    - mailspring
+    - spicetify-cli
+    - puppet-lint
+    - tfswitch-bin
+    - mongodb-compass
+    - ttf-nerd-fonts-hack-complete-git
+    - plasma5-applets-virtual-desktop-bar-git
 
 flatpak:
   - com.brave.Browser
   - com.visualstudio.code
   - com.anydesk.Anydesk
+  - com.spotify.Client
