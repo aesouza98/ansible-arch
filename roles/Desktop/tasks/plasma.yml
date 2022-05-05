@@ -3,7 +3,8 @@
   pacman: 
     name: "{{ plasma }}"
     state: present
-
+  notify: enable sddm
+  
 - name: Install KDE Plasma Tools packages
   pacman: 
     name: "{{ plasma_tools }}"
@@ -15,12 +16,6 @@
   when: core_aur is defined
   become: yes
   become_user: "{{ user.name }}"
-
-- name: Enable SDDM service
-  ansible.builtin.systemd:
-    name: sddm.service
-    state: started
-    enabled: yes
 
 - name: Check ssh key
   ansible.builtin.file:

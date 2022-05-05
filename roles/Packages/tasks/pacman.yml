@@ -13,16 +13,3 @@
   pacman: 
     name: "{{ pkg_tools }}"
     state: present
-
-- name: Download Lunarvim
-  get_url: 
-    url: https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh
-    dest: /home/{{ user.name }}/code/nanoesouza/install.sh
-    mode: 0760
-    owner: "{{ user.name }}"
-    group: "{{ user.group }}"
-
-- name: Install Lunarvim
-  shell: /home/{{ user.name }}/code/nanoesouza/install.sh -y
-  become: true
-  become_user: "{{ user.name }}"
