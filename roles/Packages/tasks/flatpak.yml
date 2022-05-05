@@ -1,5 +1,5 @@
 ---
 - name: Install flatpak packages
   flatpak: 
-    name: {{ flatpaks }}
+    name: "{{ flatpak }}"
     state: present

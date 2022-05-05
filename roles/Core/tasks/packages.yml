@@ -1,9 +1,16 @@
 ---
 - name: Install core utils packages
   pacman: 
-    name: {{ core_packages }} 
+    name: '{{ core_packages }}' 
     state: present
 
+- name: Copy sudo configuration
+  copy: 
+   src: sudoers
+   dest: /etc/sudoers
+   mode: 0440
+   validate: 'visudo -cf %s'
+   
 - name: Clone yay repo
   git: 
     repo: https://aur.archlinux.org/yay.git 
@@ -15,11 +22,6 @@
 - name: Create yay package
   shell: cd /tmp/yay && makepkg -si --noconfirm
   become_user: "{{ user.name }}"
-
-- name: Install tmux splitted pages script
-  copy: 
-    src: tmux_splitted_pager.sh 
-    dest: /home/{{ user.name }}/bin/tmux_splitted_pager.sh
 
 - name: Install core aur packages
   shell: yay --noconfirm -S {{ item }}

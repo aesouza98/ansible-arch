@@ -1,24 +1,9 @@
 ---
-- name: Create user and assign to groups
-  shell: useradd --badnames {{ user.name }} -m -s {{ user.shell }} -u {{ user.uid }} -G wheel,autologin
-
 - name: Change user password
   user:
-    name: {{ user.name }}
+    name: '{{ user.name }}'
     update_password: always
-    password: {{ user.password }}
-
-- name: Install sudo package
-  pacman: 
-    name: sudo
-    state: present
-    
-- name: Copy sudo configuration
-  copy: 
-   src: sudoers
-   dest: /etc/sudoers
-   mode: 0440
-   validate: 'visudo -cf %s'
+    password: '{{ user.password }}'
 
 - name: Create home directory skel
   file: 
@@ -33,10 +18,10 @@
   copy: 
     src: privkey 
     dest: /home/{{ user.name }}/.ssh/ansible 
-    owner: {{ user.name }} 
-    group: {{ user.group }} 
+    owner: '{{ user.name }}' 
+    group: '{{ user.group }}' 
     mode: 0600
-
+    
 - name: Download and install in bin the z.sh script
   get_url: 
     url: https://raw.githubusercontent.com/rupa/z/master/z.sh 
@@ -54,7 +39,7 @@
 
 - name: Clone plug for vim
   get_url: 
-    url: {{ plug.url }} 
+    url: '{{ plug.url }}' 
     dest: /home/{{ user.name }}/{{ plug.destination }}
   when: plug is defined
   become: yes
@@ -66,6 +51,11 @@
   become: yes
   become_user: "{{ user.name }}"
 
+- name: Install tmux splitted pages script
+  copy: 
+    src: tmux_splitted_pager.sh 
+    dest: /home/{{ user.name }}/bin/tmux_splitted_pager.sh
+    
 - name: create backup directory for vim
   file: 
     path: "/home/{{ user.name }}/.vim/backup" 
@@ -82,11 +72,11 @@
 
 - name: Clone user dotfiles
   git: 
-    repo: {{ dotfiles.url }} 
+    repo: '{{ dotfiles.url }}' 
     dest: /home/{{ user.name }}/{{ dotfiles.destination }} 
     accept_hostkey: yes 
     update: yes 
-    key_file: {{ dotfiles.key }}
+    key_file: '{{ dotfiles.key }}'
   when: dotfiles is defined
   become: yes
   become_user: "{{ user.name }}"
@@ -95,7 +85,8 @@
   synchronize: 
     src: /home/{{ user.name}}/{{ dotfiles.destination}}/ 
     dest: /home/{{ user.name }}/ 
-    archive: yes rsync_opts=--exclude=.git,--exclude=_config.yml,--exclude=LICENSE,--exclude=README.md
+    archive: yes 
+    rsync_opts: --exclude=.git,--exclude=_config.yml,--exclude=LICENSE,--exclude=README.md
   when: dotfiles is defined
   delegate_to: "{{ inventory_hostname }}"
   become: yes

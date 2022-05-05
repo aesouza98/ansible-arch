@@ -1,12 +1,12 @@
 ---
 - name: Install GNOME packages
   pacman: 
-    name: {{ gnome }}
+    name: "{{ gnome }}"
     state: present
 
 - name: Install GNOME Tools packages
   pacman: 
-    name: {{ gnome_tools }}
+    name: "{{ gnome_tools }}"
     state: present
 
 - name: Install Gnome AUR packages

@@ -12,7 +12,7 @@
 
 - name: Install gui core packages
   pacman: 
-    name: {{ desktop_core }} 
+    name: "{{ desktop_core }}" 
     state: present
 
 - name: Install xorg keyboard settings

@@ -18,7 +18,7 @@
 
 - name: Set the hostname
   hostname: 
-    name: {{ hostname }}
+    name: '{{ hostname }}'
   when: hostname is defined
 
 - name: Use all cores when compressing packages
@@ -26,6 +26,9 @@
     dest: /etc/makepkg.conf 
     regexp: "^COMPRESSXZ" 
     line: "COMPRESSXZ=(xz -c -z - --threads=0)"
+    
+- name: Create user and assign to groups
+  shell: useradd --badnames {{ user.name }} -m -s {{ user.shell }} -u {{ user.uid }} -G wheel
 
 - include: locale.yml
 - include: timezone.yml

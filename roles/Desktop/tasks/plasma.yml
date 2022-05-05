@@ -1,12 +1,12 @@
 ---
 - name: Install KDE Plasma packages
   pacman: 
-    name: {{ plasma }}
+    name: "{{ plasma }}"
     state: present
 
 - name: Install KDE Plasma Tools packages
   pacman: 
-    name: {{ plasma_tools }}
+    name: "{{ plasma_tools }}"
     state: present
 
 - name: Install KDE Plasma AUR packages
@@ -22,13 +22,18 @@
     state: started
     enabled: yes
 
+- name: Check ssh key
+  ansible.builtin.file:
+    path: /home/{{ user.name }}/.ssh/ansible
+    mode: 0600
+
 - name: Clone KDE dotfiles
   git: 
-    repo: {{ plasma_dotfiles.url }} 
+    repo: "{{ plasma_dotfiles.url }}" 
     dest: /home/{{ user.name }}/{{ plasma_dotfiles.destination }}
     accept_hostkey: yes 
     update: yes 
-    key_file: {{ plasma_dotfiles.key }}
+    key_file: "{{ plasma_dotfiles.key }}"
   become: yes
   become_user: "{{ user.name }}"
 
