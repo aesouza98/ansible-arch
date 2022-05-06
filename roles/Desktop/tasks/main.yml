@@ -1,3 +1,15 @@
 ---
-- include: packages.yml
-- include: "{{ desktop }}.yml"
+- name: Include arch config
+  include_tasks: "{{ item }}"
+  loop:
+    - arch-packages.yml
+    - "arch-{{ desktop }}.yml"
+    - settings.yml
+  when: os == "arch"
+
+- name: Include OS tasks
+  include_tasks: "{{ item }}"
+  loop:
+    - "{{ os }}.yml"
+    - settings.yml
+  when: os != "arch"

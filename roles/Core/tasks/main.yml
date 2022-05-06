@@ -1,42 +1,28 @@
 ---
-- name: Copy pacman configuration file
-  copy: 
-    src: pacman.conf 
-    dest: /etc/pacman.conf
-
-- name: Refresh pacman mirrors
-  pacman: 
-    update_cache: yes
-
-- name: Install reflector
-  pacman: 
-    name: reflector
-    state: present
-
-- name: Sort mirror by reflector
-  shell: reflector --latest 50 --age 24 --sort rate --save /etc/pacman.d/mirrorlist
-
 - name: Set the hostname
   hostname: 
     name: '{{ hostname }}'
   when: hostname is defined
-
-- name: Use all cores when compressing packages
-  lineinfile: 
-    dest: /etc/makepkg.conf 
-    regexp: "^COMPRESSXZ" 
-    line: "COMPRESSXZ=(xz -c -z - --threads=0)"
     
 - name: Create user and assign to groups
   shell: useradd --badnames {{ user.name }} -m -s {{ user.shell }} -u {{ user.uid }} -G wheel
+  ignore_errors: yes
 
-- include: locale.yml
-- include: timezone.yml
-- include: packages.yml
-- include: systemd.yml
+- name: Include locale tasks 
+  include_tasks: locale.yml
+  when: os != "fedora"
 
-- name: Copy nobeep configuration
+- name: Include other core tasks
+  include_tasks: "{{ item }}"
+  loop:
+    - timezone.yml
+    - "{{ os }}-packages.yml"
+    - systemd.yml
+
+- name: Copy sudo configuration
   copy: 
-    src: nobeep.conf 
-    dest: /etc/modprobe.d/nobeep.conf 
-    mode: 0440
+   src: sudoers
+   dest: /etc/sudoers
+   mode: 0440
+   validate: 'visudo -cf %s'
+   

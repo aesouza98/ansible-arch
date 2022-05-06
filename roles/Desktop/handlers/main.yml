@@ -5,3 +5,9 @@
     name: sddm.service
     state: started
     enabled: yes
+
+- name: enable gdm
+  ansible.builtin.systemd:
+    name: gdm.service
+    state: started
+    enabled: yes

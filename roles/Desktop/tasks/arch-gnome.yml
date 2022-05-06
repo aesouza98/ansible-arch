@@ -3,6 +3,7 @@
   pacman: 
     name: "{{ gnome }}"
     state: present
+  notify: enable gdm
 
 - name: Install GNOME Tools packages
   pacman: 

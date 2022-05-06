@@ -13,7 +13,7 @@
 - name: Install KDE Plasma AUR packages
   shell: yay --noconfirm -S {{ item }}
   with_items: "{{ plasma_aur }}"
-  when: core_aur is defined
+  when: plasma_aur is defined
   become: yes
   become_user: "{{ user.name }}"
 

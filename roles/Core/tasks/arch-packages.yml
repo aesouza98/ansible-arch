@@ -1,16 +1,38 @@
 ---
+- name: Copy pacman configuration file
+  copy: 
+    src: pacman.conf 
+    dest: /etc/pacman.conf
+
+- name: Refresh pacman mirrors
+  pacman: 
+    update_cache: yes
+
+- name: Install reflector
+  pacman: 
+    name: reflector
+    state: present
+
+- name: Sort mirror by reflector
+  shell: reflector --latest 50 --age 24 --sort rate --save /etc/pacman.d/mirrorlist
+
+- name: Use all cores when compressing packages
+  lineinfile: 
+    dest: /etc/makepkg.conf 
+    regexp: "^COMPRESSXZ" 
+    line: "COMPRESSXZ=(xz -c -z - --threads=0)"
+
+- name: Copy nobeep configuration
+  copy: 
+    src: nobeep.conf 
+    dest: /etc/modprobe.d/nobeep.conf 
+    mode: 0440
+
 - name: Install core utils packages
   pacman: 
     name: '{{ core_packages }}' 
     state: present
 
-- name: Copy sudo configuration
-  copy: 
-   src: sudoers
-   dest: /etc/sudoers
-   mode: 0440
-   validate: 'visudo -cf %s'
-   
 - name: Clone yay repo
   git: 
     repo: https://aur.archlinux.org/yay.git 
