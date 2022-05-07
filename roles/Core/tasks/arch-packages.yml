@@ -1,15 +1,15 @@
 ---
 - name: Copy pacman configuration file
-  copy: 
-    src: pacman.conf 
+  copy:
+    src: pacman.conf
     dest: /etc/pacman.conf
 
 - name: Refresh pacman mirrors
-  pacman: 
+  pacman:
     update_cache: yes
 
 - name: Install reflector
-  pacman: 
+  pacman:
     name: reflector
     state: present
 
@@ -17,24 +17,24 @@
   shell: reflector --latest 50 --age 24 --sort rate --save /etc/pacman.d/mirrorlist
 
 - name: Use all cores when compressing packages
-  lineinfile: 
+  lineinfile:
     dest: /etc/makepkg.conf 
     regexp: "^COMPRESSXZ" 
     line: "COMPRESSXZ=(xz -c -z - --threads=0)"
 
 - name: Copy nobeep configuration
-  copy: 
+  copy:
     src: nobeep.conf 
     dest: /etc/modprobe.d/nobeep.conf 
     mode: 0440
 
 - name: Install core utils packages
-  pacman: 
+  pacman:
     name: '{{ core_packages }}' 
     state: present
 
 - name: Clone yay repo
-  git: 
+  git:
     repo: https://aur.archlinux.org/yay.git 
     dest: /tmp/yay/ 
     accept_hostkey: yes 
@@ -53,11 +53,11 @@
   become_user: "{{ user.name }}"
 
 - name: Create pacman hook directory
-  file: 
+  file:
     path: /etc/pacman.d/hooks
     state: directory
 
 - name: Push pacman mirror list update hook
-  copy: 
+  copy:
     src: mirrorupgrade.hook
     dest: /etc/pacman.d/hooks/mirrorupgrade.hook

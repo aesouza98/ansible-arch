@@ -2,7 +2,7 @@
 - hosts: all
   become: yes
   roles:
-    - { role: Core, tags: 'core' }
-    - { role: User, tags: 'user' }
-    - { role: Desktop, tags: 'desktop' }
-    - { role: Packages, tags: 'packages' }
+    - {role: Core, tags: 'core'}
+    - {role: User, tags: 'user'}
+    - {role: Desktop, tags: 'desktop'}
+    - {role: Packages, tags: 'packages'}

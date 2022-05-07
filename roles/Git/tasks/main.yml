@@ -1,0 +1,44 @@
+---
+- name: Clone crmall infra roles repos
+  git: 
+    repo: '{{ item }}' 
+    dest: '{{ git.infra.roles.dir }}'
+    accept_hostkey: yes 
+    update: yes 
+    key_file: '{{ git.key }}'
+  loop: '{{ git.infra.roles.repos }}'
+  become: yes
+  become_user: "{{ user.name }}"
+
+- name: Clone crmall infra playbooks repos
+  git: 
+    repo: '{{ item }}' 
+    dest: '{{ git.infra.playbooks.dir }}'
+    accept_hostkey: yes 
+    update: yes 
+    key_file: '{{ git.key }}'
+  loop: '{{ git.infra.playbooks.repos }}'
+  become: yes
+  become_user: "{{ user.name }}"
+
+- name: Clone crmall documentation repos
+  git: 
+    repo: '{{ item }}' 
+    dest: '{{ git.documentation.dir }}'
+    accept_hostkey: yes 
+    update: yes 
+    key_file: '{{ git.key }}'
+  loop: '{{ git.documentation.repos }}'
+  become: yes
+  become_user: "{{ user.name }}"
+
+- name: Clone crmall scripts repos
+  git: 
+    repo: '{{ item }}' 
+    dest: '{{ git.scripts.dir }}'
+    accept_hostkey: yes 
+    update: yes 
+    key_file: '{{ git.key }}'
+  loop: '{{ git.scripts.repos }}'
+  become: yes
+  become_user: "{{ user.name }}"
