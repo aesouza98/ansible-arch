@@ -2,21 +2,13 @@
 - name: Include pacman if OS is Arch
   include_tasks: "{{ item }}"
   loop:
-    - pacman.yml
-    - aur.yml
+    - arch-pacman.yml
+    - arch-aur.yml
   when: os == "arch"
 
-- name: Include dnf if OS is Fedora
-  include_tasks: "{{ item }}"
-  loop:
-    - dnf.yml
-  when: os == "fedora"
-
-- name: Include apt if OS is PopOS
-  include_tasks: "{{ item }}"
-  loop:
-    - apt.yml
-  when: os == "pop"
+- name: Include {{ OS }} tasks
+  include_tasks: "{{ os }}.yml"
+  when: os != "arch"
 
 - name: Include flatpak and lunarvim
   include_tasks: "{{ item }}"

@@ -1,9 +1,10 @@
 ---
-- name: Change user password
+- name: Adjust user password and shell
   user:
     name: '{{ user.name }}'
     update_password: always
     password: '{{ user.password }}'
+    shell: /bin/zsh
 
 - name: Create home directory skel
   file: 
@@ -69,28 +70,3 @@
     state: directory
   become: yes
   become_user: "{{ user.name }}"
-
-- name: clone git repos
-  include_tasks: git.yml
-  
-#- name: Clone user dotfiles
-#  git: 
-#    repo: '{{ dotfiles.url }}' 
-#    dest: /home/{{ user.name }}/{{ dotfiles.destination }} 
-#    accept_hostkey: yes 
-#    update: yes 
-#    key_file: '{{ dotfiles.key }}'
-#  when: dotfiles is defined
-#  become: yes
-#  become_user: "{{ user.name }}"
-#
-#- name: Install user dotfiles
-#  synchronize: 
-#    src: /home/{{ user.name}}/{{ dotfiles.destination}}/ 
-#    dest: /home/{{ user.name }}/ 
-#    archive: yes 
-#    rsync_opts: --exclude=.git,--exclude=_config.yml,--exclude=LICENSE,--exclude=README.md
-#  when: dotfiles is defined
-#  delegate_to: "{{ inventory_hostname }}"
-#  become: yes
-#  become_user: "{{ user.name }}"

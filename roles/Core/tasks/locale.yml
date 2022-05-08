@@ -8,3 +8,4 @@
 
 - name: Configure keymap "{{ keymap }}"
   command: localectl set-keymap "{{ keymap }}"
+  when: os != "pop"
