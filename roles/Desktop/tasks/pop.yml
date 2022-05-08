@@ -12,3 +12,8 @@
   apt: 
     name: "{{ gnome_tools }}"
     state: latest
+
+- name: Install Gnome flatpak tools
+  flatpak:
+    name: "{{ gnome_flatpaks }}"
+    state: present

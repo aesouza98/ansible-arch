@@ -22,3 +22,8 @@
     name: gdm.service
     state: started
     enabled: yes
+
+- name: Install Gnome flatpak tools
+  flatpak:
+    name: "{{ gnome_flatpaks }}"
+    state: present

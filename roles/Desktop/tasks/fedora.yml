@@ -29,3 +29,8 @@
     name: "{{ gnome_tools }}"
     state: present
   when: desktop == "gnome"
+
+- name: Install Gnome Flatpak tools
+  flatpak:
+    name: " {{ gnome_flatpaks }}"
+    state: present
