@@ -1,6 +1,3 @@
-# LOCKED FOR NOW
-Variables are locked for now, until the development is done and everything is ready to be used.
-
 # ansible-arch
 
 Ansible collection of Playbook and Roles (+ vars), focused on automatically deploy my work laptop.
