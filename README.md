@@ -1,7 +1,6 @@
 # ansible-arch
 
-Ansible collection of Playbook and Roles (+ vars), focused on automatically deploy my work laptop.
-Automatically installs every package that I need, configure some stuff and make everything run smoothly based on my preferences.
+Ansible collection of Playbook and Roles (+ vars), focused on automatically deploy my Arch Linux installation.
 
 ## Roles
 
