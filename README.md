@@ -32,15 +32,6 @@ git clone https://github.com/nanoesouza/ansible-arch
 * Ansible
 * Vagrant (otional, to test on a disposable vm)
 
-## Configuration
-The configuration of the playbook is done by editing the `host_vars/{ distro }` file, you can mainly edit:
-
-* some settings for the archlinux installation customization
-* dotfiles git repo location
-* packages list to be installed for the various roles
-* User customization
-* Password
-
 ## Usage
 * Open `group_vars/all` and set the variables. 
    * user: User definitions
