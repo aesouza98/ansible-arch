@@ -63,6 +63,6 @@ The configuration of the playbook is done by editing the `host_vars/{ distro }` 
    * pkg_extra: Programs that are going to be installed with pacman
    * aur_pkg: General AUR packages
    * flatpak: General Flatpaks
-* Run `ansible-playbook playbook.yml -i hosts.ini -l localhost` to provision your Arch Linux
+* Run `ansible-playbook playbook.yml -i hosts.yml -l localhost` to provision your Arch Linux
 
 Every roles is tagged. You can run individual Roles [using them](https://docs.ansible.com/ansible/latest/user_guide/playbooks_tags.html).
