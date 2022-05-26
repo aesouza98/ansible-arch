@@ -1,0 +1,15 @@
+---
+- name: Install Util packages
+  pacman: 
+    name: "{{ pkg_util }}"
+    state: present
+
+- name: Install Others packages
+  pacman: 
+    name: "{{ pkg_other }}"
+    state: present
+
+- name: Install Extra packages
+  pacman: 
+    name: "{{ pkg_extra }}"
+    state: present

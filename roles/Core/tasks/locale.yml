@@ -5,7 +5,3 @@
 
 - name: Configure locale "{{ locale }}"
   command: localectl set-locale LANG=""{{ locale }}""
-
-- name: Configure keymap "{{ keymap }}"
-  command: localectl set-keymap "{{ keymap }}"
-  when: os != "pop"

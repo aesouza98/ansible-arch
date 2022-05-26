@@ -1,15 +1,12 @@
 ---
+- name: Add the flathub flatpak repository remote to the user installation
+  community.general.flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+    
 - name: Include arch config
   include_tasks: "{{ item }}"
   loop:
-    - arch-packages.yml
-    - "arch-{{ desktop }}.yml"
-    - settings.yml
-  when: os == "arch"
-
-- name: Include OS tasks
-  include_tasks: "{{ item }}"
-  loop:
-    - "{{ os }}.yml"
-    - settings.yml
-  when: os != "arch"
+    - packages.yml
+    - "{{ desktop }}.yml"

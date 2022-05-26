@@ -2,23 +2,15 @@
 - name: Install npm packages
   shell: "npm install -g pnpm && npm install -g yarn"
 
-- name: Install Neovim
-  apt:
-    deb: https://github.com/neovim/neovim/releases/download/v0.7.0/nvim-linux64.deb
-  when: os == "pop"
-
 - name: Download Lunarvim
   get_url: 
     url: https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh
-    dest: /home/{{ user.name }}/code/nanoesouza/install.sh
+    dest: /home/{{ user.name }}/install.sh
     mode: 0766
     owner: "{{ user.name }}"
     group: "{{ user.group }}"
 
 - name: Install Lunarvim
-  shell: /home/{{ user.name }}/code/nanoesouza/install.sh -y
+  shell: /home/{{ user.name }}/install.sh -y
   become: true
   become_user: "{{ user.name }}"
-
-#- name: Install Lunarvim
-#  shell: "bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh) -y"

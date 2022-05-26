@@ -1,9 +1,0 @@
-## {{ ansible_managed }}
-##
-## User privilege specification
-##
-root ALL=(ALL) ALL
-
-%sudo ALL=(ALL) NOPASSWD: ALL
-
-#includedir /etc/sudoers.d

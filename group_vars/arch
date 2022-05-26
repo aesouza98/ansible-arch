@@ -1,0 +1,202 @@
+user:
+    name: adriano.elias
+    fullname: Adriano Elias
+    uid: 1001
+    group: adriano.elias
+    shell: /bin/zsh
+    email: nanoesouza@outlook.com
+
+upassword: senha
+
+timezone: America/Sao_Paulo
+locale: pt_BR.UTF-8
+keymap: br-abnt2
+
+hostname: ArchKDE
+desktop: plasma
+installde: False
+
+pkg_core:
+    - binutils
+    - bash
+    - bash-completion
+    - base-devel
+    - less
+    - bc
+    - colordiff
+    - fzf
+    - ripgrep
+    - jq
+    - rsync
+    - parallel
+    - pwgen
+    - tmux
+    - tmuxp
+    - git
+    - tig
+    - sudo
+    - ranger
+    - vim
+    - pkgfile
+    - mlocate
+    - make
+    - ttf-dejavu
+    - ttf-hack
+    - bat
+    - exa
+    - python-neovim
+    - shellcheck
+    - sof-firmware
+    - fish
+    - zsh
+    - fd
+    - git-crypt
+    - tldr
+    - yq
+    - z
+    - yarn
+    - npm
+    - flatpak
+
+aur_core:
+    - diff-so-fancy
+
+desktop_core:
+    - xorg-server
+    - xorg-xinit
+    - xorg-xmodmap
+    - xorg-xev
+    - xorg-xrandr
+    - xcape
+    - xorg-xprop
+    - xf86-video-vesa
+
+plasma:
+    - plasma
+    - plasma-wayland-session
+    - dolphin
+    - konsole
+    - kate
+    - ark
+    - okular
+    - discover
+    - gwenview
+    - spectacle
+
+pkg_plasma:
+    - kvantum
+    - latte-dock-git
+
+aur_plasma:
+    - touche
+    - touchegg
+    
+gnome: 
+    - gnome
+    - gnome-extra
+
+pkg_gnome:
+    - gnome-tweaks
+    - gnome-themes-extra
+
+aur_gnome:
+    - menda-themes-dark-git
+    - yaru-gnome-shell-theme
+    - orchis-theme-git
+
+fpk_gnome:
+    - com.mattjakeman.ExtensionManager
+
+pkg_util:
+    - net-tools
+    - curl
+    - wget
+    - surfraw
+    - w3m
+    - nmap
+    - gnu-netcat
+    - whois
+    - mtr
+    - sslscan
+    - httpie
+    - prettyping
+    - tcpdump
+    - nethogs
+    - newsboat
+    - sshpass
+    - dnsutils
+    - gping
+    - netctl
+    - wpa_supplicant
+    - wireless_tools
+    - ipcalc
+    - python-pip
+    - python-virtualenv
+    - python-virtualenvwrapper
+    - docker
+    - virtualbox
+    - vagrant
+    - strace
+    - lsof
+    - htop
+    - glances
+    - sysstat
+    - ncdu
+    - hyperfine
+    - bpytop
+    - rsync
+    - ansible
+    - ansible-lint
+    - wireshark-cli
+    - aws-cli
+    - traceroute
+
+pkg_other:
+    - neofetch
+    - fortune-mod
+
+pkg_extra:
+    - gitg
+    - gparted
+    - unzip
+    - barrier
+    - bitwarden
+    - obsidian
+    - remmina
+    - youtube-dl
+    - steam
+    - discord
+    - gnome-keyring
+    - alsa-utils
+    - pipewire
+    - pipewire-alsa
+    - easyeffects
+    - vlc
+    - neovim
+    - flatpak
+    - mattermost-desktop
+    - deja-dup
+    - code
+    - opera
+    - opera-ffmpeg-codecs
+
+aur_pkg:
+    - bottles
+    - bsnes-hd
+    - libpamac-aur
+    - notion-app-enhanced
+    - ocs-url
+    - stacer
+    - mailspring
+    - spicetify-cli
+    - tfswitch-bin
+    - mongodb-compass
+    - ttf-nerd-fonts-hack-complete-git
+    - pnpm
+    - onlyoffice-bin
+    - code-marketplace
+
+flatpak:
+  - com.brave.Browser
+  - com.anydesk.Anydesk
+  - com.spotify.Client

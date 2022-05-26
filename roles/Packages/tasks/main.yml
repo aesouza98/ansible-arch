@@ -2,16 +2,8 @@
 - name: Include pacman if OS is Arch
   include_tasks: "{{ item }}"
   loop:
-    - arch-pacman.yml
-    - arch-aur.yml
-  when: os == "arch"
-
-- name: Include {{ OS }} tasks
-  include_tasks: "{{ os }}.yml"
-  when: os != "arch"
-
-- name: Include flatpak and lunarvim
-  include_tasks: "{{ item }}"
-  loop:
+    - pacman.yml
+    - aur.yml
     - flatpak.yml
     - lunarvim.yml
+    - aws.yml

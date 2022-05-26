@@ -1,42 +1,9 @@
 ---
-- name: Set the hostname
-  hostname: 
-    name: '{{ hostname }}'
-  when: hostname is defined
-
-- name: Create user and assign to groups
-  shell: useradd --badnames {{ user.name }} -m -s {{ user.shell }} -u {{ user.uid }} -G wheel
-  ignore_errors: yes
-  when: os != "pop"
-
-- name: Create user and assign to groups
-  shell: useradd --badnames {{ user.name }} -m -u {{ user.uid }} -G sudo
-  ignore_errors: yes
-  when: os == "pop"
-
-- name: Include locale tasks 
-  include_tasks: locale.yml
-  when: os != "fedora"
-
-- name: Include other core tasks
+- name: Include Core tasks
   include_tasks: "{{ item }}"
   loop:
+    - user.yml
     - timezone.yml
-    - "{{ os }}-packages.yml"
-    - systemd.yml
-
-- name: Copy sudo configuration
-  copy: 
-   src: sudoers
-   dest: /etc/sudoers
-   mode: 0440
-   validate: 'visudo -cf %s'
-  when: os != "pop"
-
-- name: Copy sudo configuration
-  copy: 
-   src: pop-sudoers
-   dest: /etc/sudoers
-   mode: 0440
-   validate: 'visudo -cf %s'
-  when: os == "pop"
+    - package.yml
+    - locale.yml
+    - settings.yml

@@ -4,26 +4,20 @@
     name: "{{ gnome }}"
     state: present
   notify: enable gdm
+  when: installde == "True"
 
-- name: Install GNOME Tools packages
+- name: Install GNOME packages
   pacman: 
-    name: "{{ gnome_tools }}"
+    name: "{{ pkg_gnome }}"
     state: present
 
 - name: Install Gnome AUR packages
   shell: yay --noconfirm -S {{ item }}
-  with_items: "{{ gnome_aur }}"
-  when: core_aur is defined
+  with_items: "{{ aur_gnome }}"
   become: yes
   become_user: "{{ user.name }}"
 
-- name: Enable GDM service
-  ansible.builtin.systemd:
-    name: gdm.service
-    state: started
-    enabled: yes
-
 - name: Install Gnome flatpak tools
   flatpak:
-    name: "{{ gnome_flatpaks }}"
+    name: "{{ fpk_gnome }}"
     state: present

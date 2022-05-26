@@ -30,7 +30,7 @@
 
 - name: Install core utils packages
   pacman:
-    name: '{{ core_packages }}' 
+    name: '{{ pkg_core }}' 
     state: present
 
 - name: Clone yay repo
@@ -47,8 +47,8 @@
 
 - name: Install core aur packages
   shell: yay --noconfirm -S {{ item }}
-  with_items: "{{ core_aur }}"
-  when: core_aur is defined
+  with_items: "{{ aur_core }}"
+  when: aur_core is defined
   become: yes
   become_user: "{{ user.name }}"
 

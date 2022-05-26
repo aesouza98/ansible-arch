@@ -1,9 +1,6 @@
 ---
 - name: Install flatpak packages
-  become: yes
-  become_user: "{{ user.name }}"
   flatpak: 
     name: "{{ item }}"
     state: present
-    method: user
   loop: "{{ flatpak }}"

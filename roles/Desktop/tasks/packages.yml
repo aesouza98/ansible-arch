@@ -14,3 +14,4 @@
   pacman: 
     name: "{{ desktop_core }}" 
     state: present
+  when: installde == "True"
