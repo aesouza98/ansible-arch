@@ -21,3 +21,13 @@
     update_password: always
     password: "{{ upassword | password_hash('sha512') }}"
     shell: /bin/zsh
+
+- name: Create home directory skel
+  file: 
+    path: /home/{{ user.name }}/{{ item }} 
+    state: directory 
+    mode: 0755
+  become: yes
+  become_user: "{{ user.name }}"
+  with_items: "{{ home_skel }}"
+  when: desktop == bspwm

@@ -13,8 +13,8 @@
     name: reflector
     state: present
 
-- name: Sort mirror by reflector
-  shell: reflector --latest 50 --age 24 --sort rate --save /etc/pacman.d/mirrorlist
+    #- name: Sort mirror by reflector
+    #  shell: reflector --latest 50 --age 24 --sort rate --save /etc/pacman.d/mirrorlist
 
 - name: Use all cores when compressing packages
   lineinfile:

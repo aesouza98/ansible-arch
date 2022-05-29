@@ -4,7 +4,7 @@ user:
     uid: 1001
     group: adriano.elias
     shell: /bin/zsh
-    email: nanoesouza@outlook.com
+    email: arch@nano.slmail.me
 
 upassword: senha
 
@@ -12,9 +12,19 @@ timezone: America/Sao_Paulo
 locale: pt_BR.UTF-8
 keymap: br-abnt2
 
-hostname: ArchKDE
-desktop: plasma
-installde: False
+hostname: ArchWM
+desktop: bspwm
+installde: True
+
+home_skel:
+    - bak
+    - bin
+    - code
+    - docs
+    - downloads
+    - images
+    - note
+    - vms
 
 pkg_core:
     - binutils
@@ -32,6 +42,7 @@ pkg_core:
     - pwgen
     - tmux
     - tmuxp
+    - go
     - git
     - tig
     - sudo
@@ -46,7 +57,6 @@ pkg_core:
     - exa
     - python-neovim
     - shellcheck
-    - sof-firmware
     - fish
     - zsh
     - fd
@@ -69,7 +79,10 @@ desktop_core:
     - xorg-xrandr
     - xcape
     - xorg-xprop
-    - xf86-video-vesa
+    - xorg-xsetroot
+    - xorg-xset
+    - xorg-setxkbmap
+    - nvidia
 
 plasma:
     - plasma
@@ -106,6 +119,54 @@ aur_gnome:
 
 fpk_gnome:
     - com.mattjakeman.ExtensionManager
+
+bspwm:
+    - bspwm
+    - lightdm
+    - polybar
+    - mpd
+    - alacritty
+    - kitty
+    - sxhkd
+    - nitrogen
+    - rofi
+    - gnome-themes-extra
+    - xss-lock
+    - feh
+    - redshift
+    - playerctl
+    - pulsemixer
+    - dunst
+    - flameshot
+    - polkit-gnome
+    - brightnessctl
+    - numlockx
+    - nodejs-material-design-icons
+    - ttf-jetbrains-mono
+    - ttf-fira-{code,mono,sans}
+    - btop
+    - papirus-icon-theme
+    - cmatrix
+    - typespeed
+    - libpulse
+    - xclip 
+    - yt-dlp 
+    - lsd
+    - lightdm-gtk-greeter-settings
+
+
+aur_bspwm:
+    - betterlockscreen-git
+    - i3lock-color-git
+    - zscroll-git
+    - picom-jonaburg-git
+    - nerd-fonts-{jetbrains-mono,fira-code}
+    - xcursor-breeze
+    - pipes.sh
+    - rxfetch
+    - pfetch
+    - thokr-git
+    - ipman 
 
 pkg_util:
     - net-tools
@@ -168,9 +229,10 @@ pkg_extra:
     - discord
     - gnome-keyring
     - alsa-utils
-    - pipewire
-    - pipewire-alsa
-    - easyeffects
+    - pulseaudio
+    - pulseaudio-alsa
+    - pavucontrol
+    - pulseeffects
     - vlc
     - neovim
     - flatpak
@@ -195,8 +257,8 @@ aur_pkg:
     - pnpm
     - onlyoffice-bin
     - code-marketplace
+    - spotify
+    - brave-bin
 
 flatpak:
-  - com.brave.Browser
   - com.anydesk.Anydesk
-  - com.spotify.Client

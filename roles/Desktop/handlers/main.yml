@@ -11,3 +11,9 @@
     name: gdm.service
     state: started
     enabled: yes
+
+- name: enable lightdm
+  ansible.builtin.systemd:
+    name: lightdm.service
+    state: started
+    enabled: yes
