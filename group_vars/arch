@@ -153,6 +153,12 @@ bspwm:
     - yt-dlp 
     - lsd
     - lightdm-gtk-greeter-settings
+    - xdotool
+    - xdotool
+    - geoclue
+    - mpc
+    - mopidy
+    - ncmpcpp
 
 
 aur_bspwm:
@@ -167,6 +173,11 @@ aur_bspwm:
     - pfetch
     - thokr-git
     - ipman 
+    - networkmanager-dmenu
+    - mopidy-spotify
+    - mopidy-mdp
+    - pulseaudio-control
+    - zscroll
 
 pkg_util:
     - net-tools
