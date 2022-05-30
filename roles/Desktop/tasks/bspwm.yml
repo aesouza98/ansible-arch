@@ -23,10 +23,7 @@
   become_user: "{{ user.name }}"
 
 - name: Copy Dotfiles
-  shell: cp -pr /home/{{ user.name }}/code/dotfiles/* /home/{{ user.name }}
-
-- name: Copy Hidden Dotfiles
-  shell: cp -pr /home/{{ user.name }}/code/dotfiles/.* /home/{{ user.name }}
+  shell: rsync -a --exclude=.git --exclude=README.md /home/{{ user.name }}/code/dotfiles/ /home/{{ user.name }}
   
 - name: Install Ranger Devicons
   git: 
