@@ -13,6 +13,7 @@ Ansible collection of Playbook and Roles (+ vars), focused on automatically depl
     * basic packages install
     * populates home with a directories skel
 * Desktop:
+    * Install Xorg packages and video drivers
     * Install the selected DE, if the `installde` variable is set to `True`
     * Installs every 'extra' package based on DE (gnome-tweaks on gnome or touche (+libinput-gestures) on plasma, for example)
 * Packages:
