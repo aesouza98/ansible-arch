@@ -18,7 +18,7 @@
 
 - name: Clone Dotfiles
   git:
-    repo: https://github.com/nanoesouza/wm.git
+    repo: {{ dotfiles }}
     dest: /home/{{ user.name }}/.dotfiles
     bare: yes
   become: true
