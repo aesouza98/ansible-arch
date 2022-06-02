@@ -1,5 +1,5 @@
 # ansible-arch
-
+Based on [Lagaggini's ansible-arch](https://github.com/lgaggini/ansible-arch)
 Ansible collection of Playbook and Roles (+ vars), focused on automatically deploy my Arch Linux installation.
 
 ## Roles
