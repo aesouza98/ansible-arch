@@ -182,6 +182,7 @@ pkg_util:
     - python-virtualenv
     - python-virtualenvwrapper
     - docker
+    - virtualbox-host-modules-arch
     - virtualbox
     - vagrant
     - strace
