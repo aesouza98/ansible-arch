@@ -16,6 +16,8 @@ desktop: bspwm
 installde: true
 laptop: true
 
+dotfiles: https://github.com/nanoesouza/wm.git
+
 home_skel:
     - code
     - docs
