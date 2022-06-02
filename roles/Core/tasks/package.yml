@@ -13,8 +13,8 @@
     name: reflector
     state: present
 
-    #- name: Sort mirror by reflector
-    #  shell: reflector --latest 50 --age 24 --sort rate --save /etc/pacman.d/mirrorlist
+- name: Sort mirror by reflector
+  shell: reflector --latest 50 --age 24 --sort rate --save /etc/pacman.d/mirrorlist
 
 - name: Use all cores when compressing packages
   lineinfile:
@@ -49,7 +49,7 @@
   shell: yay --noconfirm -S {{ item }}
   with_items: "{{ aur_core }}"
   when: aur_core is defined
-  become: yes
+  become: true
   become_user: "{{ user.name }}"
 
 - name: Create pacman hook directory

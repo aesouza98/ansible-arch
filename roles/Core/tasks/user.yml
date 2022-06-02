@@ -6,7 +6,7 @@
 
 - name: Create User
   shell: useradd --badnames {{ user.name }} -m -s {{ user.shell }} -u {{ user.uid }} -G wheel
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: Sudo configuration
   copy: 
@@ -24,10 +24,10 @@
 
 - name: Create home directory skel
   file: 
-    path: /home/{{ user.name }}/{{ item }} 
+    path: /home/{{ user.name }}/{{ item }} yes
     state: directory 
     mode: 0755
-  become: yes
+  become: true
   become_user: "{{ user.name }}"
   with_items: "{{ home_skel }}"
   when: desktop == bspwm

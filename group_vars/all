@@ -4,7 +4,6 @@ user:
     uid: 1001
     group: adriano.elias
     shell: /bin/zsh
-    email: arch@nano.slmail.me
 
 upassword: senha
 
@@ -14,22 +13,20 @@ keymap: br-abnt2
 
 hostname: ArchWM
 desktop: bspwm
-installde: True
+installde: true
+laptop: true
 
 home_skel:
-    - bak
-    - bin
     - code
     - docs
     - downloads
     - images
-    - note
+    - repos
     - vms
 
 pkg_core:
     - binutils
     - bash
-    - bash-completion
     - base-devel
     - less
     - bc
@@ -40,8 +37,6 @@ pkg_core:
     - rsync
     - parallel
     - pwgen
-    - tmux
-    - tmuxp
     - go
     - git
     - tig
@@ -53,6 +48,10 @@ pkg_core:
     - make
     - ttf-dejavu
     - ttf-hack
+    - ttf-jetbrains-mono
+    - ttf-fira-code
+    - ttf-fira-mono
+    - ttf-fira-sans    
     - bat
     - exa
     - python-neovim
@@ -67,22 +66,19 @@ pkg_core:
     - yarn
     - npm
     - flatpak
+    - ntfs-3g
+    - networkmanager
 
 aur_core:
     - diff-so-fancy
+    - kbd-br-thinkpad
 
 desktop_core:
-    - xorg-server
+    - xorg
     - xorg-xinit
-    - xorg-xmodmap
-    - xorg-xev
-    - xorg-xrandr
+    - xf86-video-intel
     - xcape
-    - xorg-xprop
     - xorg-xsetroot
-    - xorg-xset
-    - xorg-setxkbmap
-    - nvidia
 
 plasma:
     - plasma
@@ -122,51 +118,41 @@ fpk_gnome:
 
 bspwm:
     - bspwm
-    - lightdm
     - polybar
-    - mpd
     - alacritty
     - kitty
     - sxhkd
     - nitrogen
     - rofi
     - gnome-themes-extra
-    - xss-lock
     - feh
     - redshift
     - playerctl
     - pulsemixer
     - dunst
-    - flameshot
     - polkit-gnome
     - brightnessctl
-    - numlockx
     - nodejs-material-design-icons
-    - ttf-jetbrains-mono
-    - ttf-fira-{code,mono,sans}
-    - btop
     - papirus-icon-theme
     - cmatrix
-    - typespeed
     - libpulse
-    - xclip 
-    - yt-dlp 
-    - lsd
-    - lightdm-gtk-greeter-settings
-    - xdotool
     - xdotool
     - geoclue
-    - mpc
-    - mopidy
-    - ncmpcpp
+    - lxappearance
+    - lxappearance-gtk3
+    - thunar
+    - bitwarden-cli
+    - pamixer
+    - scrot
 
 
 aur_bspwm:
     - betterlockscreen-git
-    - i3lock-color-git
     - zscroll-git
     - picom-jonaburg-git
-    - nerd-fonts-{jetbrains-mono,fira-code}
+    - nerd-fonts-jetbrains-mono
+    - nerd-fonts-fira-code
+    - montserrat-ttf
     - xcursor-breeze
     - pipes.sh
     - rxfetch
@@ -175,32 +161,22 @@ aur_bspwm:
     - ipman 
     - networkmanager-dmenu
     - mopidy-spotify
-    - mopidy-mdp
+    - mopidy-mpd
     - pulseaudio-control
-    - zscroll
+    - bitwarden-rofi
+    - bsp-layout
 
 pkg_util:
     - net-tools
     - curl
     - wget
-    - surfraw
-    - w3m
     - nmap
     - gnu-netcat
     - whois
     - mtr
-    - sslscan
-    - httpie
-    - prettyping
     - tcpdump
-    - nethogs
-    - newsboat
     - sshpass
     - dnsutils
-    - gping
-    - netctl
-    - wpa_supplicant
-    - wireless_tools
     - ipcalc
     - python-pip
     - python-virtualenv
@@ -211,10 +187,6 @@ pkg_util:
     - strace
     - lsof
     - htop
-    - glances
-    - sysstat
-    - ncdu
-    - hyperfine
     - bpytop
     - rsync
     - ansible
@@ -222,54 +194,49 @@ pkg_util:
     - wireshark-cli
     - aws-cli
     - traceroute
+    - openvpn
+    - libinput-gestures
 
 pkg_other:
     - neofetch
     - fortune-mod
 
 pkg_extra:
-    - gitg
     - gparted
     - unzip
     - barrier
     - bitwarden
-    - obsidian
-    - remmina
-    - youtube-dl
     - steam
     - discord
     - gnome-keyring
-    - alsa-utils
     - pulseaudio
     - pulseaudio-alsa
     - pavucontrol
-    - pulseeffects
     - vlc
     - neovim
     - flatpak
     - mattermost-desktop
     - deja-dup
-    - code
-    - opera
-    - opera-ffmpeg-codecs
+    - thunderbird
+    - qbittorrent
 
 aur_pkg:
     - bottles
     - bsnes-hd
-    - libpamac-aur
     - notion-app-enhanced
     - ocs-url
     - stacer
-    - mailspring
     - spicetify-cli
-    - tfswitch-bin
     - mongodb-compass
     - ttf-nerd-fonts-hack-complete-git
     - pnpm
     - onlyoffice-bin
-    - code-marketplace
+    - vscodium-bin
+    - vscodium-marketplace
     - spotify
     - brave-bin
-
-flatpak:
-  - com.anydesk.Anydesk
+    - pulseeffects-legacy
+    - anydesk-bin
+    - remmina-git
+    - remmina-plugin-rdesktop
+    - remmina-plugin-ultravnc

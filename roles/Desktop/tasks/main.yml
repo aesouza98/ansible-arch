@@ -13,8 +13,8 @@
 
 - name: Install xorg keyboard settings
   copy: 
-    src: 10-keyboard.conf 
-    dest: /etc/X11/xorg.conf.d/10-keyboard.conf 
+    src: 00-keyboard.conf 
+    dest: /etc/X11/xorg.conf.d/00-keyboard.conf 
     owner: root 
     group: root 
     mode: 0644
@@ -26,3 +26,4 @@
     owner: root 
     group: root 
     mode: 0644
+  when: laptop == true

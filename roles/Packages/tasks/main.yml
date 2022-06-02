@@ -5,5 +5,4 @@
     - pacman.yml
     - aur.yml
     - flatpak.yml
-    - lunarvim.yml
     - aws.yml

@@ -1,60 +1,30 @@
 ---
-- name: Install BSPWM
+- name: Install BSPWM Packages
   pacman: 
     name: "{{ bspwm }}"
     state: present
-  notify: enable lightdm
-  when: installde == "True"
+  when: installde == true
 
 - name: Install BSPWM AUR packages
   shell: yay --noconfirm -S {{ item }}
-  with_items: "{{ bspwm_gnome }}"
-  become: yes
+  with_items: "{{ aur_bspwm }}"
+  become: true
   become_user: "{{ user.name }}"
 
 - name: Install Oh-My-Zsh
   shell: sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)" "" --unattended
+  become: true
+  become_user: "{{ user.name }}"
 
 - name: Clone Dotfiles
   git:
-    repo: https://github.com/nanoesouza/dotfiles.git
-    dest: /home/{{ user.name }}/code/dotfiles
-  become: yes
+    repo: https://github.com/nanoesouza/wm.git
+    dest: /home/{{ user.name }}/.dotfiles
+    bare: yes
+  become: true
   become_user: "{{ user.name }}"
 
-- name: Copy Dotfiles
-  shell: rsync -a --exclude=.git --exclude=README.md /home/{{ user.name }}/code/dotfiles/ /home/{{ user.name }}
-  
-- name: Install Ranger Devicons
-  git: 
-    repo: https://github.com/alexanderjeurissen/ranger_devicons 
-    dest: /home/{{ user.name }}/.config/ranger/plugins/ranger_devicons
-  become: yes
+- name: Install Dotfiles
+  shell: git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME checkout -f
+  become: true
   become_user: "{{ user.name }}"
-
-- name: Download TokyoNight
-  git: 
-    repo: https://github.com/stronk-dev/Tokyo-Night-Linux.git
-    dest: /tmp/tokyo-gtk
-
-- name: Install TokyoNight
-  copy: 
-    src: /tmp/tokyo-gtk/usr/share/themes/TokyoNight
-    dest: /usr/share/themes/TokyoNight
-  become: yes
-  become_user: "{{ user.name }}"
-
-- name: Set LightDM Greeter
-  shell: |
-         sudo su -c "cat << EOF > /etc/lightdm/lightdm-gtk-greeter.conf
-         [greeter]
-         theme-name = TokyoNight
-         icon-theme-name = Papirus
-         cursor-theme-name = Breeze
-         cursor-theme-size = 0
-         font-name = Fira Sans 12
-         clock-format = %A, %H:%M
-         indicators = ~session;~layout;~spacer;~clock;~spacer;~power
-         background = /usr/share/pixmaps/beach.jpg
-         user-background = false
-         EOF"
