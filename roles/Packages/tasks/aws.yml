@@ -4,3 +4,4 @@
 
 - name: Install Terragrunt Switcher
   shell: "curl -L https://raw.githubusercontent.com/warrensbox/tgswitch/release/install.sh | bash"
+

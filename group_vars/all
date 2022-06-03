@@ -140,7 +140,6 @@ bspwm:
     - libpulse
     - xdotool
     - geoclue
-    - lxappearance
     - lxappearance-gtk3
     - thunar
     - bitwarden-cli
@@ -238,7 +237,6 @@ aur_pkg:
     - vscodium-marketplace
     - spotify
     - brave-bin
-    - pulseeffects-legacy
     - anydesk-bin
     - remmina-git
     - remmina-plugin-rdesktop

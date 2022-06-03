@@ -5,3 +5,4 @@
 
 - name: Configure locale "{{ locale }}"
   command: localectl set-locale LANG=""{{ locale }}""
+
