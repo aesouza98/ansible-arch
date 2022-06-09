@@ -1,13 +1,13 @@
 ---
-- name: Install BSPWM Packages
+- name: Install WM Packages
   pacman: 
-    name: "{{ bspwm }}"
+    name: "{{ wm }}"
     state: present
   when: installde == true
 
 - name: Install BSPWM AUR packages
   shell: yay --noconfirm -S {{ item }}
-  with_items: "{{ aur_bspwm }}"
+  with_items: "{{ aur_wm }}"
   become: true
   become_user: "{{ user.name }}"
 
