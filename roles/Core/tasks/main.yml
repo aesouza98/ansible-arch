@@ -1,8 +1,0 @@
----
-- name: Include Core tasks
-  include_tasks: "{{ item }}"
-  loop:
-    - user.yml
-    - timezone.yml
-    - package.yml
-    - locale.yml

@@ -1,0 +1,16 @@
+- name: Sudo configuration
+  copy: 
+   src: sudoers
+   dest: /etc/sudoers
+   mode: 0440
+   validate: 'visudo -cf %s'
+
+- name: Install user shell
+  pacman:
+    name: "{{ user.shell }}"
+    state: present
+
+- name: Adjust user password and shell
+  user:
+    name: '{{ user.name }}'
+    shell: "/bin/{{ user.shell }}"

@@ -1,0 +1,68 @@
+- name: Clone yay repo
+  git:
+    repo: https://aur.archlinux.org/yay.git 
+    dest: /tmp/yay/ 
+    accept_hostkey: yes 
+    update: yes
+  become_user: "{{ user.name }}"
+
+- name: Create yay package
+  shell: cd /tmp/yay && makepkg -si --noconfirm
+  become_user: "{{ user.name }}"
+
+- name: Install flatpak
+  pacman:
+    name: flatpak
+    state: present
+
+- name: Install Flathub
+  flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+    method: user
+  become_user: "{{ user.name }}"
+
+- name: Install Pamac
+  pacman:
+    name: pamac-nosnap
+    state: present
+    executable: yay
+    extra_args: --builddir /var/cache/yay
+  become_user: "{{ user.name }}"
+
+- name: Load packages variable
+  include_vars:
+    file: packages.yml
+
+- name: Install core packages
+  pacman:
+    name: "{{ core_packages }}"
+    state: present
+
+- name: Install 'main' packages (browser, media player, terminal, etc)
+  pacman:
+    name: "{{ main_pkg }}"
+    state: present
+
+- name: Install 'utils' packages (pip, fetches, docker, vagrant, timeshift)
+  pacman:
+    name: "{{ utils }}"
+    state: present
+
+- name: Install other softwares
+  pacman:
+    name: "{{ packages }}"
+    state: present
+
+- name: Install other AUR softwares
+  pacman:
+    name: "{{ aur_packages }}"
+    state: present
+    executable: yay
+    extra_args: --builddir /var/cache/yay
+
+- name: Install Flatpak packages
+  flatpak:
+    name: "{{ flatpak }}"
+    state: present

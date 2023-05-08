@@ -1,7 +1,0 @@
----
-
-- name: Install aur packages
-  shell: yay --noconfirm -S {{ item }}
-  with_items: "{{ aur_pkg }}"
-  become: true
-  become_user: "{{ user.name }}"

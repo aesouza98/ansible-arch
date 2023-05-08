@@ -1,7 +1,0 @@
----  
-- name: Install Terraform Switcher
-  shell: "curl -L https://raw.githubusercontent.com/warrensbox/terraform-switcher/release/install.sh | bash"
-
-- name: Install Terragrunt Switcher
-  shell: "curl -L https://raw.githubusercontent.com/warrensbox/tgswitch/release/install.sh | bash"
-

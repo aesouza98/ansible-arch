@@ -1,0 +1,28 @@
+- name: Load packages variable
+  include_vars:
+    file: wm.yml
+
+- name: Install WM packages
+  pacman:
+    name: "{{ pkg }}"
+    state: present
+
+- name: Install WM AUR packages
+  pacman:
+    name: "{{ aur }}"
+    state: present
+    executable: yay
+    extra_args: --builddir /var/cache/yay
+
+- name: Clone Dotfiles
+  git:
+    repo: "{{ dotfiles }}"
+    dest: "/home/{{ user.name }}/.dotfiles"
+    bare: yes
+  become: true
+  become_user: "{{ user.name }}"
+
+- name: Install Dotfiles
+  shell: git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME checkout -f
+  become: true
+  become_user: "{{ user.name }}"

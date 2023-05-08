@@ -1,0 +1,96 @@
+core_packages:
+    - binutils
+    - bash
+    - base-devel
+    - less
+    - bc
+    - colordiff
+    - fzf
+    - ripgrep
+    - jq
+    - rsync
+    - parallel
+    - pwgen
+    - go
+    - git
+    - tig
+    - sudo
+    - ranger
+    - vim
+    - pkgfile
+    - mlocate
+    - make
+    - bat
+    - exa
+    - shellcheck
+    - fish
+    - zsh
+    - fd
+    - tldr
+    - z
+    - yarn
+    - npm
+    - ntfs-3g
+    - networkmanager
+
+main_pkg:
+    - firefox
+    - alacritty
+    - kitty
+    - libreoffice
+    - vlc
+
+utils:
+    - net-tools
+    - curl
+    - wget
+    - nmap
+    - gnu-netcat
+    - whois
+    - mtr
+    - tcpdump
+    - sshpass
+    - dnsutils
+    - ipcalc
+    - python-pip
+    - htop
+    - bpytop
+    - rsync
+    - aws-cli
+    - traceroute
+    - openvpn
+    - neofetch
+    - timeshift
+
+packages:
+    - gparted
+    - unzip
+    - bitwarden
+    - steam
+    - pavucontrol
+    - neovim
+    - deja-dup
+    - qbittorrent
+    - pritunl-client-electron
+    - ansible
+    - ansible-lint
+    - docker
+    - vagrant
+
+aur_packages:
+    - ocs-url
+    - stacer
+    - ttf-nerd-fonts-hack-complete-git
+    - vscodium-bin
+    - vscodium-marketplace
+    - brave-bin
+
+flatpak:
+    - com.github.tchx84.Flatseal
+    - com.obsproject.Studio
+    - com.slack.Slack
+    - com.spotify.Client
+    - md.obsidian.Obsidian
+    - org.onlyoffice.desktopeditors
+    - org.nickvision.tubeconverter
+    - com.getmailspring.Mailspring

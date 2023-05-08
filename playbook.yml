@@ -1,7 +1,7 @@
 ---
-- hosts: all
-  become: yes
+- hosts: arch
+  become: true
   roles:
-    - {role: Core, tags: 'core'}
-    - {role: Desktop, tags: 'desktop'}
-    - {role: Packages, tags: 'packages'}
+    - pacman
+    - user
+    - packages

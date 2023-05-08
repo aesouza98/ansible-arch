@@ -1,9 +1,0 @@
----
-- name: Include pacman if OS is Arch
-  include_tasks: "{{ item }}"
-  loop:
-    - pacman.yml
-    - aur.yml
-    - flatpak.yml
-    - aws.yml
-
