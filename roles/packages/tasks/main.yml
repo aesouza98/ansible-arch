@@ -32,12 +32,9 @@
     method: user
   become_user: "{{ user.name }}"
 
-- name: Install Pamac
-  pacman:
-    name: pamac-all
-    state: present
-    executable: yay
-    extra_args: --builddir /var/cache/yay
+- name: Install aur packages
+  shell: yay --noconfirm -S pamac-all
+  become: true
   become_user: "{{ user.name }}"
 
 - name: Install 'main' packages (browser, media player, terminal, etc)
@@ -55,12 +52,10 @@
     name: "{{ packages }}"
     state: present
 
-- name: Install other AUR softwares
-  pacman:
-    name: "{{ aur_packages }}"
-    state: present
-    executable: yay
-    extra_args: --builddir /var/cache/yay
+- name: Install aur packages
+  shell: yay --noconfirm -S {{ item }}
+  with_items: "{{ aur_packages }}"
+  become: true
   become_user: "{{ user.name }}"
 
 

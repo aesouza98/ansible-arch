@@ -7,13 +7,11 @@
     name: "{{ pkg }}"
     state: present
 
-- name: Install WM AUR packages
-  pacman:
-    name: "{{ aur }}"
-    state: present
-    executable: yay
-    extra_args: --builddir /var/cache/yay
-    become_user: "{{ user.name }}"
+- name: Install aur packages
+  shell: yay --noconfirm -S {{ item }}
+  with_items: "{{ aur }}"
+  become: true
+  become_user: "{{ user.name }}"
 
 - name: Clone Dotfiles
   git:
