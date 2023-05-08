@@ -13,6 +13,7 @@
     state: present
     executable: yay
     extra_args: --builddir /var/cache/yay
+    become_user: "{{ user.name }}"
 
 - name: Clone Dotfiles
   git:
