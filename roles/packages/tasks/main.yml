@@ -1,3 +1,7 @@
+- name: Load packages variable
+  include_vars:
+    file: packages.yml
+
 - name: Clone yay repo
   git:
     repo: https://aur.archlinux.org/yay.git 
@@ -35,10 +39,6 @@
     executable: yay
     extra_args: --builddir /var/cache/yay
   become_user: "{{ user.name }}"
-
-- name: Load packages variable
-  include_vars:
-    file: packages.yml
 
 - name: Install 'main' packages (browser, media player, terminal, etc)
   pacman:
