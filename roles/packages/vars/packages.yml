@@ -82,7 +82,6 @@ packages:
 aur_packages:
     - ocs-url
     - stacer
-    - ttf-nerd-fonts-hack-complete-git
     - vscodium-bin
     - vscodium-marketplace
     - brave-bin
