@@ -6,6 +6,11 @@
     update: yes
   become_user: "{{ user.name }}"
 
+- name: Install core packages
+  pacman:
+    name: "{{ core_packages }}"
+    state: present
+
 - name: Create yay package
   shell: cd /tmp/yay && makepkg -si --noconfirm
   become_user: "{{ user.name }}"
@@ -34,11 +39,6 @@
 - name: Load packages variable
   include_vars:
     file: packages.yml
-
-- name: Install core packages
-  pacman:
-    name: "{{ core_packages }}"
-    state: present
 
 - name: Install 'main' packages (browser, media player, terminal, etc)
   pacman:

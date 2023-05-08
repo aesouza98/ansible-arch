@@ -2,6 +2,9 @@ core_packages:
     - binutils
     - bash
     - base-devel
+    - gcc
+    - pkg-config
+    - fakeroot
     - less
     - bc
     - colordiff

@@ -10,7 +10,9 @@
     name: "{{ user.shell }}"
     state: present
 
-- name: Adjust user password and shell
+- name: Adjust user shell
   user:
     name: '{{ user.name }}'
     shell: "/bin/{{ user.shell }}"
+    groups: wheel
+    append: yes
