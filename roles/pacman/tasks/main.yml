@@ -7,6 +7,7 @@
   pacman:
     name: archlinux-keyring
     state: latest
+    update_cache: true
 
 - name: Import a key via keyserver
   community.general.pacman_key:
