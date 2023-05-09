@@ -63,4 +63,6 @@
   flatpak:
     name: "{{ flatpak }}"
     state: present
+    method: user
+  become: true
   become_user: "{{ user.name }}"
