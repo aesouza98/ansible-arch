@@ -32,7 +32,7 @@
     method: user
   become_user: "{{ user.name }}"
 
-- name: Install aur packages
+- name: Install pamac package
   shell: yay --noconfirm -S pamac-all
   become: true
   become_user: "{{ user.name }}"
