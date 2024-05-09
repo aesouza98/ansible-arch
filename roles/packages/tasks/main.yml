@@ -33,7 +33,7 @@
   become_user: "{{ user.name }}"
 
 - name: Install pamac package
-  shell: yay --noconfirm -S pamac-all
+  shell: yay --noconfirm -S pamac-nosnap
   become: true
   become_user: "{{ user.name }}"
 
@@ -54,10 +54,9 @@
 
 - name: Install aur packages
   shell: yay --noconfirm -S {{ item }}
-  with_items: "{{ aur_packages }}"
+  with_items: "{{ aur }}"
   become: true
   become_user: "{{ user.name }}"
-
 
 - name: Install Flatpak packages
   flatpak:

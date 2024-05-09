@@ -5,5 +5,6 @@
             "file:///home/adriano.elias/ansible/ansible-arch/group_vars/arch"
         ],
         "https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible-inventory.json": "file:///home/adriano.elias/ansible-arch/hosts.yml"
-    }
+    },
+    "ansible.python.interpreterPath": "/bin/python3"
 }

@@ -3,20 +3,17 @@ user:
     fullname: Adriano Elias
     uid: 1001
     group: adriano
-    shell: zsh
-
-upassword: senha
+    shell: fish
 
 timezone: America/Sao_Paulo
 locale: pt_BR.UTF-8
-keymap: br-abnt2
+keymap: us-intl
 
 dotfiles: https://github.com/aesouza98/dotfiles.git
 
 home_skel:
-    - code
-    - docs
-    - downloads
-    - images
-    - repos
-    - vms
+    - Documentos
+    - Projetos
+    - Downloads
+    - Imagens
+    - Applications

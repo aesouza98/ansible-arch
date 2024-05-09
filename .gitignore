@@ -2,3 +2,4 @@
 playbook.retry
 *.log
 vault_pass
+.vscode

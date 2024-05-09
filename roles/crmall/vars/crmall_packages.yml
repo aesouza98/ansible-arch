@@ -1,0 +1,18 @@
+crmall_packages:
+    - python3.12
+    - python3.11
+    - python3.10
+    - python3.9
+    - python3.8
+    - python-virtualenv
+    - python-virtualenvwrapper
+    - git-crypt
+    - docker-compose
+    - vagrant
+    - virtualbox
+    - htpasswd
+    - glab
+
+cmrall_aur:
+    - tgswitch
+    - tfswitch
