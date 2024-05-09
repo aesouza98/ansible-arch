@@ -2,8 +2,13 @@
 - hosts: arch
   become: true
   roles:
-    - pacman
-    - user
-    - packages
-    - crmall
-    - wm
+    - role: pacman
+      tags: pacman
+    - role: user
+      tags: user
+    - role: packages
+      tags: packages
+    - role: crmall
+      tags: crmall
+    - role: wm
+      tags: wm

@@ -21,7 +21,7 @@ pkg:
 
 aur:
     - wlogout
-    - swww
+    #- swww
     - swaybg
     - zscroll
     - nerd-fonts-jetbrains-mono

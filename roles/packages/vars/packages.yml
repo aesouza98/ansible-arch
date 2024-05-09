@@ -82,8 +82,8 @@ packages:
 
 aur:
     - ocs-url
-    - stacer
-    - thorium-browser
+    #- stacer
+    #- thorium-browser-bin
     - brave-bin
     - timeshift
     - timeshift-autosnap
