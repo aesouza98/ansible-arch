@@ -1,4 +1,4 @@
-pkg:
+wm_pkg:
     - hyprland
     - waybar
     - dunst
@@ -19,9 +19,9 @@ pkg:
     - xfce4-power-manager
     - xorg-xbacklight
 
-aur:
+wm_aur:
     - wlogout
-    #- swww
+#    - swww
     - swaybg
     - zscroll
     - nerd-fonts-jetbrains-mono

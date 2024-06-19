@@ -1,5 +1,6 @@
 ---
-- hosts: arch
+- name: Bootstrap arch machine
+  hosts: arch
   become: true
   roles:
     - role: pacman

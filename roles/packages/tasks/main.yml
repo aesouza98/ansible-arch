@@ -2,66 +2,11 @@
   include_vars:
     file: packages.yml
 
-- name: Clone yay repo
-  git:
-    repo: https://aur.archlinux.org/yay.git 
-    dest: /tmp/yay/ 
-    accept_hostkey: yes 
-    update: yes
-  become_user: "{{ user.name }}"
+- name: Include pacman tasks
+  include_task: pacman.yml
 
-- name: Install core packages
-  pacman:
-    name: "{{ core_packages }}"
-    state: present
+- name: Include AUR package install tasks
+  include_task: aur.yml
 
-- name: Create yay package
-  shell: cd /tmp/yay && makepkg -si --noconfirm
-  become_user: "{{ user.name }}"
-
-- name: Install flatpak
-  pacman:
-    name: flatpak
-    state: present
-
-- name: Install Flathub
-  flatpak_remote:
-    name: flathub
-    state: present
-    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
-    method: user
-  become_user: "{{ user.name }}"
-
-- name: Install pamac package
-  shell: yay --noconfirm -S pamac-nosnap
-  become: true
-  become_user: "{{ user.name }}"
-
-- name: Install 'main' packages (browser, media player, terminal, etc)
-  pacman:
-    name: "{{ main_pkg }}"
-    state: present
-
-- name: Install 'utils' packages (pip, fetches, docker, vagrant, timeshift)
-  pacman:
-    name: "{{ utils }}"
-    state: present
-
-- name: Install other softwares
-  pacman:
-    name: "{{ packages }}"
-    state: present
-
-- name: Install aur packages
-  shell: yay --noconfirm -S {{ item }}
-  with_items: "{{ aur }}"
-  become: true
-  become_user: "{{ user.name }}"
-
-- name: Install Flatpak packages
-  flatpak:
-    name: "{{ flatpak }}"
-    state: present
-    method: user
-  become: true
-  become_user: "{{ user.name }}"
+- name: Include Flatpak package install tasks
+  include_task: flatpak.yml

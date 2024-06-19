@@ -1,15 +1,12 @@
-- name: Copy file with owner and permissions
-  ansible.builtin.copy:
-    src: pacman.conf
-    dest: /etc/pacman.conf
+---
+- name: Import pacman config tasks
+  include_task: pacman.yml
 
-- name: Update Arch keyring
-  pacman:
-    name: archlinux-keyring
-    state: latest
-    update_cache: true
+- name: Import AUR config tasks
+  include_task: aur.yml
 
-- name: Import a key via keyserver
-  community.general.pacman_key:
-    id: 7568D9BB55FF9E5287D586017AE645C0CF8E292A
-    keyserver: keyserver.ubuntu.com
+- name: Import Nix package manager task
+  include_task: nix.yml
+
+- name: Import chaotic-aur install task
+  include_task: chaotic.yml

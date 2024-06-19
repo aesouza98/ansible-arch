@@ -1,0 +1,23 @@
+---
+- name: Install flatpak
+  pacman:
+    name: flatpak
+    state: present
+
+- name: Install Flathub
+  flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+    method: user
+  become_user: "{{ user.name }}"
+
+
+- name: Install Flatpak packages
+  flatpak:
+    name: "{{ flatpak }}"
+    state: present
+    method: user
+  become: true
+  become_user: "{{ user.name }}"
+  ignore_errors: true

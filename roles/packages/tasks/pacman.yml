@@ -1,0 +1,24 @@
+---
+- name: Install core packages
+  pacman:
+    name: "{{ core_packages }}"
+    state: present
+
+- name: Install 'main' packages (browser, media player, terminal, etc)
+  pacman:
+    name: "{{ main_pkg }}"
+    state: present
+  ignore_errors: true
+
+- name: Install 'utils' packages (pip, fetches, docker, vagrant, timeshift)
+  pacman:
+    name: "{{ utils }}"
+    state: present
+  ignore_errors: true
+
+- name: Install other softwares
+  pacman:
+    name: "{{ packages }}"
+    state: present
+  ignore_errors: true
+

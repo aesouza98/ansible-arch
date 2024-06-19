@@ -4,12 +4,12 @@
 
 - name: Install WM packages
   pacman:
-    name: "{{ pkg }}"
+    name: "{{ wm_pkg }}"
     state: present
 
 - name: Install aur packages
   shell: yay --noconfirm -S {{ item }}
-  with_items: "{{ aur }}"
+  with_items: "{{ wm_aur }}"
   become: true
   become_user: "{{ user.name }}"
 
@@ -17,11 +17,11 @@
   git:
     repo: "{{ dotfiles }}"
     dest: "/home/{{ user.name }}/.dotfiles"
-   # bare: yes
+    bare: true
   become: true
   become_user: "{{ user.name }}"
 
-#- name: Install Dotfiles
-#  shell: git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME checkout -f
-#  become: true
-#  become_user: "{{ user.name }}"
+- name: Install Dotfiles
+  shell: git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME checkout -f
+  become: true
+  become_user: "{{ user.name }}"
