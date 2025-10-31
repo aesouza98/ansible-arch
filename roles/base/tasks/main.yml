@@ -1,6 +1,12 @@
 ---
 - name: Import pacman config tasks
-  include_task: pacman.yml
+  ansible.builtin.include_tasks: pacman.yml
 
 - name: Import AUR config tasks
-  include_task: aur.yml
+  ansible.builtin.include_tasks: aur.yml
+
+- name: Import sudo config task
+  ansible.builtin.include_tasks: sudo.yml
+
+- name: Import user config task
+  ansible.builtin.include_tasks: user.yml

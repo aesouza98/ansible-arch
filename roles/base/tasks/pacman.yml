@@ -9,7 +9,7 @@
     group: root
 
 - name: Update Arch keyring
-  ansible.builtin.pacman:
+  community.general.pacman:
     name: archlinux-keyring
     state: latest
     update_cache: true

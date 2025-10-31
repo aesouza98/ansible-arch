@@ -1,0 +1,19 @@
+---
+- name: Install user shell
+  community.general.pacman:
+    name: "{{ user.shell }}"
+    state: present
+
+- name: Get shell binary path
+  ansible.builtin.command: "which {{ user.shell }}"
+  register: shell_path
+  changed_when: false
+
+- name: Set user shell and wheel group
+  ansible.builtin.user:
+    name: '{{ user.username }}'
+    comment: '{{ user.description }}'
+    shell: "{{ shell_path.stdout }}"
+    groups: wheel
+    append: true
+    create_home: true
