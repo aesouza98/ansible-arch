@@ -1,0 +1,6 @@
+---
+- name: Import pacman config tasks
+  include_task: pacman.yml
+
+- name: Import AUR config tasks
+  include_task: aur.yml

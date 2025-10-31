@@ -1,0 +1,15 @@
+---
+- name: Copy new pacman.conf
+  ansible.builtin.copy:
+    src: pacman.conf
+    dest: /etc/pacman.conf
+    backup: true
+    mode: '644'
+    owner: root
+    group: root
+
+- name: Update Arch keyring
+  ansible.builtin.pacman:
+    name: archlinux-keyring
+    state: latest
+    update_cache: true
