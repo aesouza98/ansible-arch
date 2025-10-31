@@ -1,13 +1,16 @@
 ---
-- name: Install pamac package
-  shell: yay --noconfirm -S libpamac-flatpak
+- name: Install libpamac-flatpak from AUR
   become: true
   become_user: "{{ user.name }}"
-  ignore_errors: true
+  kewlfft.aur.aur:
+    name: libpamac-flatpak
+    state: present
 
 - name: Install aur packages
-  shell: yay --noconfirm -S {{ item }}
+  kewlfft.aur.aur:
+    name: {{ item }}
+    state: present
   with_items: "{{ aur }}"
   become: true
   become_user: "{{ user.name }}"
-  ignore_errors: true
+
