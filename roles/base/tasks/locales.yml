@@ -1,7 +1,7 @@
 ---
 # Timezone
 - name: Set timezone
-  ansible.builtin.command: "timedatectl set-timezone {{ timezone }}"
+  ansible.builtin.command: "timedatectl set-timezone {{ system.timezone }}"
   changed_when: false
 
 # Locale
@@ -11,13 +11,13 @@
     regexp: "^#?({{ item }})"
     line: "{{ item }}"
   loop:
-    - "{{ locale.us }}"
-    - "{{ locale.br }}"
+    - "{{ system.locale.us }}"
+    - "{{ system.locale.br }}"
 
 - name: Generate locales
   ansible.builtin.command: locale-gen
   args:
-    creates: "/usr/lib/locale/{{ locale.us }}"
+    creates: "/usr/lib/locale/{{ system.locale.us }}"
 
 # Set main locale + extra locale settings
 - name: Configure /etc/locale.conf
@@ -31,5 +31,5 @@
   ansible.builtin.copy:
     dest: /etc/vconsole.conf
     content: |
-      KEYMAP=us-acentos
+      KEYMAP={{ system.keymap }}
     mode: '0644'

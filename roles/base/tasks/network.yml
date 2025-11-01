@@ -65,18 +65,18 @@
 # - name: Connect to Wi-Fi network using NetworkManager
 #   community.general.nmcli:
 #     type: wifi
-#     conn_name: "{{ wifi_ssid }}"
+#     conn_name: "{{ wifi.ssid }}"
 #     ifname: "{{ base_wifi_interface }}"
-#     ssid: "{{ wifi_ssid }}"
+#     ssid: "{{ wifi.ssid }}"
 #     wifi_sec:
 #       key-mgmt: "wpa-psk"
-#       psk: "{{ wifi_password }}"
+#       psk: "{{ wifi.password }}"
 #     autoconnect: true
 #     state: present
 #   become: true
 #
 # - name: Bring Wi-Fi connection up
 #   community.general.nmcli:
-#     conn_name: "{{ wifi_ssid }}"
+#     conn_name: "{{ wifi.ssid }}"
 #     state: up
 #   become: true
