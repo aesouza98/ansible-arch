@@ -1,7 +1,7 @@
 ---
 - name: Sudo configuration
-  ansible.builtin.copy:
-   src: sudoers
+  ansible.builtin.template:
+   src: sudoers.j2
    dest: /etc/sudoers
    mode: '440'
    validate: 'visudo -cf %s'

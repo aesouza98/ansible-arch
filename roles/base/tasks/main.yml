@@ -1,4 +1,13 @@
 ---
+- name: Import user create and config task
+  ansible.builtin.include_tasks: user.yml
+
+- name: Import locales config task
+  ansible.builtin.include_tasks: locales.yml
+
+- name: Import networking config task
+  ansible.builtin.include_tasks: network.yml
+
 - name: Import pacman config tasks
   ansible.builtin.include_tasks: pacman.yml
 
@@ -8,5 +17,8 @@
 - name: Import sudo config task
   ansible.builtin.include_tasks: sudo.yml
 
-- name: Import user config task
-  ansible.builtin.include_tasks: user.yml
+- name: Import disk automount config task
+  ansible.builtin.include_tasks: disks.yml
+
+- name: Import snapshots config task
+  ansible.builtin.include_tasks: snapshots.yml

@@ -1,0 +1,71 @@
+---
+- name: Ensure snapper is installed
+  community.general.pacman:
+    name: snapper
+    state: present
+  become: true
+
+- name: Ensure btrfs-progs is installed
+  community.general.pacman:
+    name: btrfs-progs
+    state: present
+  become: true
+
+- name: Ensure snapshots directory exists
+  ansible.builtin.file:
+    path: "{{ snapshots.path }}"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+  become: true
+
+- name: Create Snapper configuration for root
+  ansible.builtin.command: >
+    snapper -c {{ snapshots.config_name }} create-config {{ subvolumes.root_subvol }}
+  args:
+    creates: "/etc/snapper/configs/{{ snapshots.config_name }}"
+  become: true
+
+- name: Create pacman hook directory
+  ansible.builtin.file:
+    path: /etc/pacman.d/hooks
+    state: directory
+    mode: '0755'
+    owner: root
+    group: root
+  become: true
+
+- name: Add pacman pre-transaction hook to create Snapper snapshot
+  ansible.builtin.copy:
+    dest: /etc/pacman.d/hooks/99-snapper-root.hook
+    content: |
+      [Trigger]
+      Operation = Upgrade
+      Operation = Install
+      Operation = Remove
+      Type = Package
+      Target = *
+
+      [Action]
+      Description = "Creating Snapper root snapshot before pacman transaction"
+      When = PreTransaction
+      Exec = /usr/bin/snapper -c {{ snapshots.config_name }} create --description "pacman-auto-$(date +%%Y%%m%%d-%%H%%M%%S)" --cleanup-algorithm number
+    mode: '0644'
+  become: true
+
+- name: (Optional) Ensure snapper cleanup rules exist
+  ansible.builtin.copy:
+    dest: "/etc/snapper/configs/{{ snapshots.config_name }}.conf"
+    content: |
+      NUMBER_CLEANUP="yes"
+      NUMBER_MIN_AGE="1800"
+      NUMBER_LIMIT="10"
+      TIMELINE_CLEANUP="yes"
+      TIMELINE_LIMIT_HOURLY="0"
+      TIMELINE_LIMIT_DAILY="50"
+      TIMELINE_LIMIT_WEEKLY="0"
+      TIMELINE_LIMIT_MONTHLY="0"
+      TIMELINE_LIMIT_YEARLY="0"
+    mode: '0644'
+  become: true

@@ -1,19 +1,35 @@
 user:
-    name: adriano
-    fullname: Adriano Elias
-    uid: 1001
-    group: adriano
-    shell: fish
+  description: Adriano Elias
+  usename: nanoe
+  uid: 1001
+  gid: 1001
+  group: adriano
+  shell: fish
 
 timezone: America/Sao_Paulo
-locale: pt_BR.UTF-8
-keymap: us-intl
+locale:
+  br: pt_BR.UTF-8
+  us: en_US.UTF-8
+
+keymap: us-acentos
+
+disks:
+  HDD:
+    uuid: "347CF2B57CF270CA"
+    fs_type: ntfs-3g
+    options: "defaults,nofail,x-systemd.device-timeout=1s"
+  Windows:
+    uuid: "9804F58404F565A2"
+    fs_type: ntfs-3g
+    options: "defaults,nofail,x-systemd.device-timeout=1s"
+
+subvolumes:
+  root_subvol: "@"
+  home_subvol: "@home"
+
+snapshots:
+  path: "/.snapshots"
+  config_name: "root"
+  cleanup: true
 
 dotfiles: https://github.com/aesouza98/dotfiles.git
-
-home_skel:
-    - Documentos
-    - Projetos
-    - Downloads
-    - Imagens
-    - Applications

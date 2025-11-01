@@ -19,13 +19,13 @@
     accept_hostkey: true
     update: true
   become: true
-  become_user: "{{ user.name }}"
+  become_user: "{{ user.username }}"
   when: base_yay_check.rc != 0
 
 
 - name: Build and install yay
   ansible.builtin.shell: cd /tmp/yay && makepkg -si --noconfirm
   become: true
-  become_user: "{{ user.name }}"
+  become_user: "{{ user.username }}"
   when: base_yay_check.rc != 0
   changed_when: false

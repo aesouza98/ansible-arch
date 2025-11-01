@@ -1,0 +1,18 @@
+---
+- name: Ensure mount points exist
+  ansible.builtin.file:
+    path: "/{{ item.key }}"
+    state: directory
+    owner: "{{ user.username }}"
+    group: "{{ user.username }}"
+    mode: '0755'
+  loop: "{{ disks | dict2items }}"
+
+- name: Mount disks declaratively
+  ansible.posix.mount:
+    path: "/{{ item.key }}"
+    src: "UUID={{ item.value.uuid }}"
+    fstype: "{{ item.value.fs_type }}"
+    opts: "{{ item.value.options }}{%- if 'ntfs' in item.value.fs_type -%},uid={{ user.uid }},gid={{ user.gid }}{%- endif -%}"
+    state: mounted
+  loop: "{{ disks | dict2items }}"

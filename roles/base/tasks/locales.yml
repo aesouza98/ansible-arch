@@ -1,0 +1,35 @@
+---
+# Timezone
+- name: Set timezone
+  ansible.builtin.command: "timedatectl set-timezone {{ timezone }}"
+  changed_when: false
+
+# Locale
+- name: Ensure required locales are enabled in /etc/locale.gen
+  ansible.builtin.lineinfile:
+    path: /etc/locale.gen
+    regexp: "^#?({{ item }})"
+    line: "{{ item }}"
+  loop:
+    - "{{ locale.us }}"
+    - "{{ locale.br }}"
+
+- name: Generate locales
+  ansible.builtin.command: locale-gen
+  args:
+    creates: "/usr/lib/locale/{{ locale.us }}"
+
+# Set main locale + extra locale settings
+- name: Configure /etc/locale.conf
+  ansible.builtin.template:
+    src: locale.conf.j2
+    dest: /etc/locale.conf
+    mode: '0644'
+
+# Console keymap
+- name: Set console keymap
+  ansible.builtin.copy:
+    dest: /etc/vconsole.conf
+    content: |
+      KEYMAP=us-acentos
+    mode: '0644'

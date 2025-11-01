@@ -3,11 +3,5 @@
   hosts: arch
   become: true
   roles:
-    - role: pacman
-      tags: pacman
-    - role: user
-      tags: user
-    - role: packages
-      tags: packages
-    - role: wm
-      tags: wm
+    - role: base
+      tags: base
