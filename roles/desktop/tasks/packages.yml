@@ -12,4 +12,5 @@
     state: absent
   loop: "{{ desktop_packages | dict2items }}"
   when: item.key not in user.desktops
+  failed_when: false
   become: true
