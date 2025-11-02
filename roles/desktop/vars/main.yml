@@ -1,0 +1,16 @@
+desktop_packages:
+  hyprland:
+    packages:
+      - hyprland
+      - mako
+    display_manager: "uwsm"
+  gnome:
+    packages:
+      - gnome
+      - gdm
+    display_manager: "gdm"
+  kde:
+    packages:
+      - plasma
+      - sddm
+    display_manager: "sddm"

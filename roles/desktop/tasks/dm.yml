@@ -1,0 +1,22 @@
+---
+- name: Install desktop packages for selected desktops
+  community.general.pacman:
+    name: "{{ user.display_manager }}"
+    state: present
+  become: true
+
+- name: Enable selected display manager
+  ansible.builtin.systemd_service:
+    name: "{{ user.display_manager }}"
+    enabled: true
+    state: started
+  become: true
+
+- name: Disable other display managers
+  ansible.builtin.systemd_service:
+    name: "{{ item.value.display_manager }}"
+    enabled: false
+    state: stopped
+  loop: "{{ desktop_packages | dict2items }}"
+  when: item.value.display_manager != user.display_manager
+  become: true
