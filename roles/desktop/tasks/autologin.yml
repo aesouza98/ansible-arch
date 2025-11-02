@@ -1,5 +1,13 @@
 ---
-# systemd autologin safety
+- name: Ensure snapshots directory exists
+  ansible.builtin.file:
+    path: /etc/systemd/system/getty@tty1.service.d/
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+  become: true
+
 - name: Enable autologin on tty1
   ansible.builtin.template:
     src: autologin.conf.j2
