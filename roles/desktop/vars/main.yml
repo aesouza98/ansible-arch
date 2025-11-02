@@ -3,6 +3,7 @@ desktop_packages:
     packages:
       - hyprland
       - mako
+      - dconf
     display_manager: "uwsm"
   gnome:
     packages:
