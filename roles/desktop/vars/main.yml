@@ -1,9 +1,28 @@
 desktop_packages:
   hyprland:
     packages:
+      # Hyprland
       - hyprland
-      - mako
+      - blueberry
       - dconf
+      - grim
+      - hyprshot
+      - libnotify
+      - mako
+      - swaybg
+      - swayosd
+      - waybar
+      # - walker
+      - wofi
+      # Theme // Appearance
+      - adwaita-fonts
+      - adwaita-icon-theme
+      - vimix-cursors
+      # GNOME // Nautilus
+      - file-roller
+      - gsettings-desktop-schemas
+      - nautilus
+      - sushi
     display_manager: "uwsm"
   gnome:
     packages:
