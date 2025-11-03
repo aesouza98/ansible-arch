@@ -1,14 +1,14 @@
 ---
 - name: Install libpamac-flatpak from AUR
   become: true
-  become_user: "{{ user.name }}"
+  become_user: "{{ user.username }}"
   kewlfft.aur.aur:
     name: libpamac-flatpak
     state: present
 
 - name: Install aur packages
   become: true
-  become_user: "{{ user.name }}"
+  become_user: "{{ user.username }}"
   kewlfft.aur.aur:
     name: "{{ packages_aur }}"
     state: present
