@@ -5,19 +5,39 @@ desktop_packages:
       - hyprland
       - blueberry
       - dconf
+      - ghostty
       - grim
+      - hyprlock
       - hyprshot
+      - kitty
       - libnotify
       - mako
+      - polkit-gnome
       - swaybg
       - swayosd
       - waybar
-      # - walker
+      - walker
       - wofi
+      # Pipewire
+      - pipewire
+      - pipewire-alsa
+      - pipewire-audio
+      - pipewire-jack
+      - pipewire-pulse
+      - gst-plugin-pipewire
+      - wireplumber
+      - pavucontrol
+      - pamixer
+      # Clipboard
+      - cliphist
+      - wl-clip-persist
+      - wl-clipboard
       # Theme // Appearance
       - adwaita-fonts
       - adwaita-icon-theme
       - vimix-cursors
+      - noto-fonts-emoji
+      - yaru-icon-theme
       # GNOME // Nautilus
       - file-roller
       - gsettings-desktop-schemas
