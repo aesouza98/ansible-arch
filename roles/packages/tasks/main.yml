@@ -1,8 +1,11 @@
 - name: Include pacman tasks
   ansible.builtin.include_tasks: pacman.yml
+  tags: [packages, packages_pacman]
 
 - name: Include AUR package install tasks
   ansible.builtin.include_tasks: aur.yml
+  tags: [packages, packages_aur]
 
 - name: Include Flatpak package install tasks
   ansible.builtin.include_tasks: flatpak.yml
+  tags: [packages, packages_flatpak]

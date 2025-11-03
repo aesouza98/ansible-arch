@@ -4,3 +4,8 @@
     name: "{{ base_system_packages }}"
     state: present
   become: true
+
+- name: Install essential packages
+  community.general.pacman:
+    name: "{{ base_packages_essential }}"
+    state: present

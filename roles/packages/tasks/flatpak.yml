@@ -10,7 +10,7 @@
     state: present
     flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
     method: user
-  become_user: "{{ user.name }}"
+  become_user: "{{ user.username }}"
   become: true
 
 
@@ -20,5 +20,5 @@
     state: present
     method: user
   become: true
-  become_user: "{{ user.name }}"
+  become_user: "{{ user.username }}"
   failed_when: false

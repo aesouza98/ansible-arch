@@ -12,3 +12,59 @@ base_system_packages:
   - pipewire-pulse
   - gst-plugin-pipewire
   - wireplumber
+
+base_packages_essential:
+  # Navegação e leitura
+  - less
+  - tree
+  - man-db
+  - man-pages
+  - texinfo
+
+  # Shell e completions
+  - bash-completion
+
+  # Utilitários base
+  - which
+  - file
+  - findutils
+  - gzip
+  - tar
+  - unzip
+  - zip
+  - rsync
+  - p7zip
+
+  # Networking
+  - net-tools        # ifconfig, route
+  - iproute2         # ip command
+  - openssh
+  - wget
+  - curl
+  - socat
+  - nmap
+
+  # Monitoramento / Debug
+  - htop
+  - strace
+  - lsof
+  - psmisc           # killall, fuser
+  - procps-ng        # ps, top, free
+  - sysstat
+  - iotop
+  - lsb-release
+
+  # FS e disco
+  - dosfstools
+  - exfatprogs
+  - ntfs-3g
+  - parted
+  - e2fsprogs
+  - xfsprogs
+  - btrfs-progs
+
+  # Outros básicos
+  - sudo
+  - jq
+  - tzdata
+
