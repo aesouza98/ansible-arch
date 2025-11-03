@@ -8,6 +8,11 @@
     owner: root
     group: root
 
+- name: Update pacman cache
+  community.general.pacman:
+    update_cache: yes
+  become: true
+
 - name: Update Arch keyring
   community.general.pacman:
     name: archlinux-keyring
