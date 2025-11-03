@@ -10,7 +10,7 @@
 
 - name: Update pacman cache
   community.general.pacman:
-    update_cache: yes
+    update_cache: true
   become: true
 
 - name: Update Arch keyring
