@@ -1,9 +1,14 @@
 ---
+- name: Remove jack2 (conflicts with pipewire)
+  community.general.pacman:
+    name: jack2
+    state: absent
+  become: true
+
 - name: Install desktop packages for selected desktops
   community.general.pacman:
     name: "{{ desktop_packages[item].packages }}"
     state: present
-    extra_args: "--noconfirm --overwrite *"
   loop: "{{ user.desktops }}"
   become: true
 
