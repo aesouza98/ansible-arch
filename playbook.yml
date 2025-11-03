@@ -11,6 +11,10 @@
       tags: user
     - role: packages
       tags: packages
-    - role: nvidia
+
+  tasks:
+    - name: Apply Nvidia role only if enabled
+      import_role:
+        name: nvidia
+      when: nvidia | default(false)
       tags: nvidia
-      when: nvidia == true
