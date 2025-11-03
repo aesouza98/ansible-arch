@@ -29,5 +29,6 @@
   ansible.builtin.command:
     cmd: "stow --dotfiles --target=/home/{{ user.username }} ."
     chdir: "{{ user.dotfiles.path }}"
+    creates: "/home/{{ user.username }}/.zshrc/"
   become: true
   become_user: "{{ user.username }}"
