@@ -6,21 +6,21 @@
   become: true
 
 # Locale
-- name: Ensure required locales are enabled in /etc/locale.gen
-  ansible.builtin.lineinfile:
-    path: /etc/locale.gen
-    regexp: "^#?({{ item }})"
-    line: "{{ item }}"
-  loop:
-    - "{{ system.locale.us }}"
-    - "{{ system.locale.br }}"
-  become: true
-
-- name: Generate locales
-  ansible.builtin.command: locale-gen
-  args:
-    creates: "/usr/lib/locale/{{ system.locale.us }}"
-  become: true
+# - name: Ensure required locales are enabled in /etc/locale.gen
+#   ansible.builtin.lineinfile:
+#     path: /etc/locale.gen
+#     regexp: "^#?({{ item }})"
+#     line: "{{ item }}"
+#   loop:
+#     - "{{ system.locale.us }}"
+#     - "{{ system.locale.br }}"
+#   become: true
+#
+# - name: Generate locales
+#   ansible.builtin.command: locale-gen
+#   args:
+#     creates: "/usr/lib/locale/{{ system.locale.us }}"
+#   become: true
 
 # Set main locale + extra locale settings
 - name: Configure /etc/locale.conf
