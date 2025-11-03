@@ -22,7 +22,6 @@ desktop_packages:
       - pipewire
       - pipewire-alsa
       - pipewire-audio
-      - pipewire-jack
       - pipewire-pulse
       - gst-plugin-pipewire
       - wireplumber
