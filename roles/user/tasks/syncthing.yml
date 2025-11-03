@@ -28,4 +28,3 @@
     scope: user
   become: true
   become_user: "{{ user.username }}"
-

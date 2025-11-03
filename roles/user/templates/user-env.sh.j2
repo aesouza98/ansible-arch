@@ -1,5 +1,5 @@
 # Managed by Ansible
 
-{% for key, value in env_system_vars.items() %}
+{% for key, value in user.env_vars.items() %}
 export {{ key }}="{{ value }}"
 {% endfor %}

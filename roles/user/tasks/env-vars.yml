@@ -1,21 +1,23 @@
 ---
-- name: Ensure system env dir exists
+- name: Ensure user paths dir exists
   ansible.builtin.file:
-    path: /etc/profile.d
+    path: "/home/{{ user.username }}/.config/shell/"
     state: directory
     mode: '0755'
-  become: true
+    owner: "{{ user.username }}"
+    group: "{{ user.group | default(user.username) }}"
 
-- name: Apply system environment variables
+- name: Create PATH export file
   ansible.builtin.template:
-    src: system-env.sh.j2
-    dest: /etc/profile.d/99-custom-env.sh
+    src: user-env.sh.j2
+    dest: "/home/{{ user.username }}/.config/shell/envs"
     mode: '0644'
-  become: true
+    owner: "{{ user.username }}"
+    group: "{{ user.group | default(user.username) }}"
 
-- name: Ensure PATH export file exists
+- name: Create environment variables file
   ansible.builtin.copy:
-    dest: "/home/{{ user.username }}/.profile"
+    dest: "/home/{{ user.username }}/.config/shell/profile"
     content: |
       # Managed by Ansible
       {% for p in user.paths %}
