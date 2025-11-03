@@ -12,7 +12,7 @@
   ansible.builtin.git:
     repo: "{{ user.dotfiles.repo }}"
     dest: "{{ user.dotfiles.path }}"
-    version: "main"
+    version: "master"
     force: yes
     update: yes
     accept_hostkey: yes
