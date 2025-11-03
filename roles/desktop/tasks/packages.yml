@@ -3,7 +3,7 @@
   community.general.pacman:
     name: "{{ desktop_packages[item].packages }}"
     state: present
-    extra_args: "--overwrite"
+    extra_args: "--overwrite '*'"
   loop: "{{ user.desktops }}"
   become: true
 
