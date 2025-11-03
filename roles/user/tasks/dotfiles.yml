@@ -1,0 +1,39 @@
+---
+- name: Ensure dotfiles directory exists
+  ansible.builtin.file:
+    path: "{{ user.dotfiles.path }}"
+    state: directory
+    owner: "{{ user.username }}"
+    group: "{{ user.group }}"
+    mode: "0755"
+  become: true
+
+- name: Clone dotfiles repository
+  ansible.builtin.git:
+    repo: "{{ user.dotfiles.repo }}"
+    dest: "{{ user.dotfiles.path }}"
+    version: "main"
+    force: yes
+    update: yes
+    accept_hostkey: yes
+  become: true
+  become_user: "{{ user.username }}"
+
+- name: Find all files and directories in dotfiles repo
+  ansible.builtin.find:
+    paths: "{{ user.dotfiles.path }}"
+    recurse: yes
+  register: dotfiles_list
+  become: true
+  become_user: "{{ user.username }}"
+
+- name: Create symlinks for dotfiles
+  ansible.builtin.file:
+    src: "{{ item.path }}"
+    dest: "/home/{{ user.username }}/{{ item.path | regex_replace('^' + user.dotfiles.path + '/', '') }}"
+    state: link
+    force: true
+    owner: "{{ user.username }}"
+    group: "{{ user.group }}"
+  loop: "{{ dotfiles_list.files }}"
+  become: true
