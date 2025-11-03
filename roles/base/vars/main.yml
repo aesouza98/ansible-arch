@@ -33,11 +33,10 @@ base_packages_essential:
   - unzip
   - zip
   - rsync
-  - p7zip
 
   # Networking
-  - net-tools        # ifconfig, route
-  - iproute2         # ip command
+  - net-tools
+  - iproute2
   - openssh
   - wget
   - curl
@@ -48,8 +47,8 @@ base_packages_essential:
   - htop
   - strace
   - lsof
-  - psmisc           # killall, fuser
-  - procps-ng        # ps, top, free
+  - psmisc
+  - procps-ng
   - sysstat
   - iotop
   - lsb-release
@@ -67,4 +66,3 @@ base_packages_essential:
   - sudo
   - jq
   - tzdata
-

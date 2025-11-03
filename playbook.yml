@@ -11,3 +11,6 @@
       tags: user
     - role: packages
       tags: packages
+    - role: nvidia
+      tags: nvidia
+      when: nvidia == true

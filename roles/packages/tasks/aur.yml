@@ -12,3 +12,4 @@
   kewlfft.aur.aur:
     name: "{{ packages_aur }}"
     state: present
+  failed_when: false

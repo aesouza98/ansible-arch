@@ -66,7 +66,7 @@ packages_aur:
   - brave-bin
   - nil-git
   - oh-my-zsh-git
-  - protonup-rs
+  - protonup-rs-bin
   - pureref
 
 packages_flatpak:
