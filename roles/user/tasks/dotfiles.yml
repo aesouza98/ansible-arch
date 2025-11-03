@@ -27,9 +27,7 @@
 
 - name: Apply dotfiles using stow
   ansible.builtin.command:
-    cmd: "stow --dir={{ user.dotfiles.path }} --target=/home/{{ user.username }} {{ item }}"
+    cmd: "stow --dotfiles --target=/home/{{ user.username }} ."
     chdir: "{{ user.dotfiles.path }}"
-    creates: "/home/{{ user.username }}/{{ item | regex_replace('^dot-', '.') }}"
-  loop: "{{ lookup('ansible.builtin.find', user.dotfiles.path + '/*', wantlist=True) | map('basename') | list }}"
   become: true
   become_user: "{{ user.username }}"
