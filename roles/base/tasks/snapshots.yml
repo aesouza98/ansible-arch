@@ -69,4 +69,4 @@
       TIMELINE_LIMIT_YEARLY="0"
     mode: '0644'
   become: true
-  when: snapshots.cleanup == "true"
+  when: snapshots.cleanup

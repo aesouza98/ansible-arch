@@ -6,11 +6,17 @@
   loop: "{{ user.desktops }}"
   become: true
 
+- name: Install selected Display Manager
+  community.general.pacman:
+    name: "{{ user.display_manager }}"
+    state: present
+  become: true
+
 - name: Remove packages from desktops not in use
   community.general.pacman:
     name: "{{ item.value.packages }}"
     state: absent
   loop: "{{ desktop_packages | dict2items }}"
-  when: item.key not in user.desktops
+  when: item.key not in user.desktops and not in user.display_manager
   failed_when: false
   become: true

@@ -1,0 +1,31 @@
+---
+- name: Ensure syncthing is installed
+  community.general.pacman:
+    name: syncthing
+    state: present
+
+- name: Ensure Syncthing config directory exists
+  ansible.builtin.file:
+    path: "/home/{{ user.username }}/.local/state/syncthing"
+    state: directory
+    owner: "{{ user.username }}"
+    group: "{{ user.username }}"
+    mode: "0755"
+
+- name: Deploy syncthing config.xml
+  ansible.builtin.template:
+    src: config.xml.j2
+    dest: "/home/{{ user.username }}/.local/state/syncthing/config.xml"
+    owner: "{{ user.username }}"
+    group: "{{ user.username }}"
+    mode: "0600"
+
+- name: Enable Syncthing user systemd service
+  ansible.builtin.systemd:
+    name: syncthing.service
+    state: started
+    enabled: true
+    scope: user
+  become: true
+  become_user: "{{ user.username }}"
+

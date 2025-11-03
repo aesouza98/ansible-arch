@@ -1,0 +1,22 @@
+# Managed by Ansible
+
+[user]
+	name = {{ user.description }}
+	email = {{ user.git.email }}
+
+[init]
+	defaultBranch = {{ user.git.branch }}
+
+[core]
+	editor = nvim
+
+[pull]
+	rebase = true
+
+[push]
+	autoSetupRemote = true
+
+[alias]
+{% for alias, command in user.git.aliases.items() %}
+	{{ alias }} = {{ command }}
+{% endfor %}

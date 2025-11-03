@@ -1,3 +1,16 @@
 ---
 - name: Import dotfiles config task
   ansible.builtin.include_tasks: dotfiles.yml
+
+- name: Import environment variables config task
+  ansible.builtin.include_tasks: env-vars.yml
+
+- name: Import task to auto start (or not) uwsm
+  ansible.builtin.include_tasks: uwsm.yml
+
+- name: Import task to configure git
+  ansible.builtin.include_tasks: git.yml
+
+- name: Import task to configure syncthing
+  ansible.builtin.include_tasks: syncthing.yml
+  when: user.syncthing
