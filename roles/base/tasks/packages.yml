@@ -1,7 +1,6 @@
 ---
 - name: Install system packages
   community.general.pacman:
-    name: "{{ item }}"
+    name: "{{ base_system_packages }}"
     state: present
-  loop: "{{ base_system_packages }}"
   become: true
