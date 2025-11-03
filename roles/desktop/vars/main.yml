@@ -18,13 +18,6 @@ desktop_packages:
       - waybar
       - walker
       - wofi
-      # Pipewire
-      - pipewire
-      - pipewire-alsa
-      - pipewire-audio
-      - pipewire-pulse
-      - gst-plugin-pipewire
-      - wireplumber
       - pavucontrol
       - pamixer
       # Clipboard

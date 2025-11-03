@@ -22,3 +22,6 @@
 
 - name: Import snapshots config task
   ansible.builtin.include_tasks: snapshots.yml
+
+- name: Import system packages installation
+  ansible.builtin.include_tasks: packages.yml
