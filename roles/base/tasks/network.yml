@@ -4,7 +4,7 @@
     name: systemd-networkd.service
     enabled: false
     state: stopped
-  ignore_errors: true
+  failed_when: false
   become: true
 
 - name: Ensure NetworkManager and iwd packages are installed
@@ -43,7 +43,7 @@
     name: wpa_supplicant.service
     enabled: false
     state: stopped
-  ignore_errors: true
+  failed_when: false
   become: true
 
 - name: Enable and start NetworkManager

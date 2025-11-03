@@ -1,24 +1,30 @@
 ---
-- name: Install core packages
-  pacman:
-    name: "{{ core_packages }}"
+- name: Update pacman cache
+  community.general.pacman:
+    update_cache: true
+  become: true
+
+- name: Install dev packages -- compilers and libs
+  community.general.pacman:
+    name: "{{ packages_dev }}"
     state: present
 
-- name: Install 'main' packages (browser, media player, terminal, etc)
-  pacman:
-    name: "{{ main_pkg }}"
+- name: Install system packages -- system utilities (like ffmpeg)
+  community.general.pacman:
+    name: "{{ packages_system }}"
     state: present
-  ignore_errors: true
 
-- name: Install 'utils' packages (pip, fetches, docker, vagrant, timeshift)
-  pacman:
-    name: "{{ utils }}"
+- name: Install CLI packages -- packages used in the terminal
+  community.general.pacman:
+    name: "{{ packages_cli }}"
     state: present
-  ignore_errors: true
 
-- name: Install other softwares
-  pacman:
-    name: "{{ packages }}"
+- name: Install neovim packages -- install neovim and LSPs/Formatters
+  community.general.pacman:
+    name: "{{ packages_neovim }}"
     state: present
-  ignore_errors: true
 
+- name: Install desktop packages -- desktop applications
+  community.general.pacman:
+    name: "{{ packages_desktop }}"
+    state: present

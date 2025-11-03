@@ -1,23 +1,24 @@
 ---
 - name: Install flatpak
-  pacman:
+  community.general.pacman:
     name: flatpak
     state: present
 
 - name: Install Flathub
-  flatpak_remote:
+  community.general.flatpak_remote:
     name: flathub
     state: present
     flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
     method: user
   become_user: "{{ user.name }}"
+  become: true
 
 
 - name: Install Flatpak packages
-  flatpak:
-    name: "{{ flatpak }}"
+  community.general.flatpak:
+    name: "{{ packages_flatpak }}"
     state: present
     method: user
   become: true
   become_user: "{{ user.name }}"
-  ignore_errors: true
+  failed_when: false

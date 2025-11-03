@@ -1,12 +1,8 @@
-- name: Load packages variable
-  include_vars:
-    file: packages.yml
-
 - name: Include pacman tasks
-  include_task: pacman.yml
+  ansible.builtin.include_tasks: pacman.yml
 
 - name: Include AUR package install tasks
-  include_task: aur.yml
+  ansible.builtin.include_tasks: aur.yml
 
 - name: Include Flatpak package install tasks
-  include_task: flatpak.yml
+  ansible.builtin.include_tasks: flatpak.yml

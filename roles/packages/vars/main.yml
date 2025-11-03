@@ -1,0 +1,75 @@
+packages_dev:
+  - cargo
+  - gcc
+  - make
+  - git
+  - glibc
+  - libgccjit
+  - nodejs
+  - rust
+  - yarn
+
+packages_system:
+  - ffmpeg
+  - imagemagick
+  - xdg-user-dirs
+  - xdg-user-dirs-gtk
+  - zlib
+
+packages_cli:
+  - ansible
+  - ansible-lint
+  - atuin
+  - bat
+  - eza
+  - fastfetch
+  - fd
+  - fzf
+  - ghostty
+  - jq
+  - lazygit
+  - 7zip
+  - ripgrep
+  - stow
+  - starship
+  - unzip
+  - wget
+  - yazi
+  - zip
+  - zoxide
+
+packages_neovim:
+  - neovim
+  - # Language servers
+  - lua-language-server
+  - pyright
+  - bash-language-server
+  - rust-analyzer
+  - typescript-language-server
+  - gopls
+
+  - # Formatters / linters
+  - stylua
+  - shfmt
+  - python-black
+  - prettier
+
+packages_desktop:
+  - bitwarden
+  - firefox
+  - localsend
+  - obsidian
+  - syncthing
+
+packages_aur:
+  - afetch
+  - brave-bin
+  - nil-git
+  - oh-my-zsh-git
+  - protonup-rs
+  - pureref
+
+packages_flatpak:
+  - com.stremio.Stremio
+  - it.mijorus.gearlever
+  - com.spotify.Client

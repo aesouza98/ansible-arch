@@ -10,7 +10,7 @@
 - name: Check if yay is installed
   ansible.builtin.command: which yay
   register: base_yay_check
-  ignore_errors: true
+  failed_when: false
   changed_when: false
 
 - name: Clone yay repo
@@ -19,6 +19,7 @@
     dest: /tmp/yay/
     accept_hostkey: true
     update: true
+    version: "master"
   become: true
   become_user: "{{ user.username }}"
   when: base_yay_check.rc != 0
