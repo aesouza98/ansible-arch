@@ -1,0 +1,37 @@
+user:
+  description: User
+  username: user
+  uid: 1001
+  gid: 1001
+  group: user
+  shell: zsh
+
+system:
+  timezone: America/Sao_Paulo
+  keymap: us-acentos
+  locale:
+    br: pt_BR.UTF-8 UTF-8
+    us: en_US.UTF-8 UTF-8
+
+wifi:
+  ssid: wireless_network
+  password: wireless_password
+
+disks:
+  HDD:
+    uuid: "347CF2B57CF270CA"
+    fs_type: ntfs-3g
+    options: "defaults,nofail,x-systemd.device-timeout=1s"
+  Windows:
+    uuid: "9804F58404F565A2"
+    fs_type: ntfs-3g
+    options: "defaults,nofail,x-systemd.device-timeout=1s"
+
+subvolumes:
+  root_subvol: "@"
+  home_subvol: "@home"
+
+snapshots:
+  path: "/.snapshots"
+  config_name: "root"
+  cleanup: true

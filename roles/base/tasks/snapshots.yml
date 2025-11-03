@@ -54,7 +54,7 @@
     mode: '0644'
   become: true
 
-- name: (Optional) Ensure snapper cleanup rules exist
+- name: Ensure snapper cleanup rules exist
   ansible.builtin.copy:
     dest: "/etc/snapper/configs/{{ snapshots.config_name }}.conf"
     content: |
@@ -69,3 +69,4 @@
       TIMELINE_LIMIT_YEARLY="0"
     mode: '0644'
   become: true
+  when: {{ snapshots.cleanup }} == "true"

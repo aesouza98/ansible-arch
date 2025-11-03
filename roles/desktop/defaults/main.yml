@@ -1,0 +1,4 @@
+user:
+  desktops:
+    - kde
+  display_manager: sddm
