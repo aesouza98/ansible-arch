@@ -5,3 +5,9 @@
   roles:
     - role: base
       tags: base
+    - role: desktop
+      tags: desktop
+    - role: user
+      tags: user
+    - role: packages
+      tags: packages
