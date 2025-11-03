@@ -7,6 +7,7 @@
     group: "{{ user.username }}"
     mode: '0755'
   loop: "{{ disks | dict2items }}"
+  become: true
 
 - name: Mount disks declaratively
   ansible.posix.mount:
@@ -16,3 +17,4 @@
     opts: "{{ item.value.options }}{%- if 'ntfs' in item.value.fs_type -%},uid={{ user.uid }},gid={{ user.gid }}{%- endif -%}"
     state: mounted
   loop: "{{ disks | dict2items }}"
+  become: true

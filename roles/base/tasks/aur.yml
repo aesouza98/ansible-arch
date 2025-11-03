@@ -5,6 +5,7 @@
       - git
       - base-devel
     state: present
+  become: true
 
 - name: Check if yay is installed
   ansible.builtin.command: which yay

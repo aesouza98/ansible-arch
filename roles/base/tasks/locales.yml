@@ -3,6 +3,7 @@
 - name: Set timezone
   ansible.builtin.command: "timedatectl set-timezone {{ system.timezone }}"
   changed_when: false
+  become: true
 
 # Locale
 - name: Ensure required locales are enabled in /etc/locale.gen
@@ -13,11 +14,13 @@
   loop:
     - "{{ system.locale.us }}"
     - "{{ system.locale.br }}"
+  become: true
 
 - name: Generate locales
   ansible.builtin.command: locale-gen
   args:
     creates: "/usr/lib/locale/{{ system.locale.us }}"
+  become: true
 
 # Set main locale + extra locale settings
 - name: Configure /etc/locale.conf
@@ -25,6 +28,7 @@
     src: locale.conf.j2
     dest: /etc/locale.conf
     mode: '0644'
+  become: true
 
 # Console keymap
 - name: Set console keymap
@@ -33,3 +37,4 @@
     content: |
       KEYMAP={{ system.keymap }}
     mode: '0644'
+  become: true

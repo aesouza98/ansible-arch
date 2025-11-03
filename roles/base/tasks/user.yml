@@ -3,6 +3,7 @@
   community.general.pacman:
     name: "{{ user.shell }}"
     state: present
+  become: true
 
 - name: Get shell binary path
   ansible.builtin.command: "which {{ user.shell }}"
@@ -17,3 +18,4 @@
     groups: wheel
     append: true
     create_home: true
+  become: true
