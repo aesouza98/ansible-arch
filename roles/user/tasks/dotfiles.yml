@@ -13,27 +13,23 @@
     repo: "{{ user.dotfiles.repo }}"
     dest: "{{ user.dotfiles.path }}"
     version: "master"
-    force: yes
-    update: yes
-    accept_hostkey: yes
-  become: true
-  become_user: "{{ user.username }}"
-
-- name: Find all files and directories in dotfiles repo
-  ansible.builtin.find:
-    paths: "{{ user.dotfiles.path }}"
-    recurse: yes
-  register: dotfiles_list
-  become: true
-  become_user: "{{ user.username }}"
-
-- name: Create symlinks for dotfiles
-  ansible.builtin.file:
-    src: "{{ item.path }}"
-    dest: "/home/{{ user.username }}/{{ item.path | regex_replace('^' + user.dotfiles.path + '/', '') }}"
-    state: link
     force: true
-    owner: "{{ user.username }}"
-    group: "{{ user.group }}"
-  loop: "{{ dotfiles_list.files }}"
+    update: true
+    accept_hostkey: true
   become: true
+  become_user: "{{ user.username }}"
+
+- name: Install stow if not present
+  community.general.pacman:
+    name: stow
+    state: present
+  become: true
+
+- name: Apply dotfiles using stow
+  ansible.builtin.command:
+    cmd: "stow --dir={{ user.dotfiles.path }} --target=/home/{{ user.username }} {{ item }}"
+    chdir: "{{ user.dotfiles.path }}"
+    creates: "/home/{{ user.username }}/{{ item | regex_replace('^dot-', '.') }}"
+  loop: "{{ lookup('ansible.builtin.find', user.dotfiles.path + '/*', wantlist=True) | map('basename') | list }}"
+  become: true
+  become_user: "{{ user.username }}"
