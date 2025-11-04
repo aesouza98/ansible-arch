@@ -10,7 +10,7 @@
 
 - name: Install NVIDIA drivers and utilities
   community.general.pacman:
-    name: {{ nvidia.packages }}
+    name: "{{ nvidia.packages }}"
     state: present
   tags: nvidia, drivers
   become: true

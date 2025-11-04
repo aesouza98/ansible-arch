@@ -14,7 +14,7 @@
 
   tasks:
     - name: Apply Nvidia role only if enabled
-      import_role:
+      ansible.builtin.import_role:
         name: nvidia
       when: nvidia | default(false)
       tags: nvidia

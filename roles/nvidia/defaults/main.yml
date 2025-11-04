@@ -3,7 +3,7 @@ nvidia:
   packages:
     - nvidia
     - nvidia-utils
-    - lib32-nvidia-utils 
+    - lib32-nvidia-utils
     - nvidia-settings
   targets:
     - nvidia
