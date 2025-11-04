@@ -3,3 +3,4 @@ playbook.retry
 *.log
 vault_pass
 .vscode
+.ansible-facts
