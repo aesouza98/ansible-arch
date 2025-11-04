@@ -10,11 +10,7 @@
 
 - name: Install NVIDIA drivers and utilities
   community.general.pacman:
-    name:
-      - nvidia
-      - nvidia-utils
-      - lib32-nvidia-utils
-      - nvidia-settings
+    name: {{ nvidia.packages }}
     state: present
   tags: nvidia, drivers
   become: true

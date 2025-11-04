@@ -3,8 +3,9 @@ Operation=Install
 Operation=Upgrade
 Operation=Remove
 Type=Package
-Target=nvidia
-Target=linux
+{% for target in nvidia.targets %}
+Target={{ target }}
+{% endfor %}
 
 [Action]
 Description=Update Nvidia module in initcpio
