@@ -1,7 +1,7 @@
 ---
 - name: Ensure wineprefix directory exists
   ansible.builtin.file:
-    path: "{{ wine_prefix }}"
+    path: "{{ gaming_wine_prefix }}"
     state: directory
     owner: "{{ user.username }}"
     group: "{{ user.group | default(user.username) }}"
@@ -12,18 +12,18 @@
 - name: Initialize wineprefix
   ansible.builtin.command: "wineboot --init"
   environment:
-    WINEARCH: "{{ wine_arch }}"
-    WINEPREFIX: "{{ wine_prefix }}"
+    WINEARCH: "{{ gaming_wine_arch }}"
+    WINEPREFIX: "{{ gaming_wine_prefix }}"
   become: true
   become_user: "{{ user.username }}"
   args:
-    creates: "{{ wine_prefix }}/system.reg"
+    creates: "{{ gaming_wine_prefix }}/system.reg"
   tags: [gaming, gaming_wine]
 
 - name: Apply common winetricks
   ansible.builtin.command: "winetricks -q corefonts vcrun2019"
   environment:
-    WINEPREFIX: "{{ wine_prefix }}"
+    WINEPREFIX: "{{ gaming_wine_prefix }}"
   changed_when: false
   become: true
   become_user: "{{ user.username }}"
