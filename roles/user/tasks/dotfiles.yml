@@ -18,6 +18,7 @@
     accept_hostkey: true
   become: true
   become_user: "{{ user.username }}"
+  failed_when: false
 
 - name: Install stow if not present
   community.general.pacman:
