@@ -1,25 +1,25 @@
 ---
 - name: Import task to configure ssh keys
-  ansible.builtin.include_tasks: ssh.yml
+  ansible.builtin.import_tasks: ssh.yml
   tags: [user, user_ssh]
 
 - name: Import dotfiles config task
-  ansible.builtin.include_tasks: dotfiles.yml
+  ansible.builtin.import_tasks: dotfiles.yml
   tags: [user, user_dotfiles]
 
 - name: Import environment variables config task
-  ansible.builtin.include_tasks: env-vars.yml
+  ansible.builtin.import_tasks: env-vars.yml
   tags: [user, user_env]
 
 - name: Import task to auto start (or not) uwsm
-  ansible.builtin.include_tasks: uwsm.yml
+  ansible.builtin.import_tasks: uwsm.yml
   tags: [user, user_uwsm]
 
 - name: Import task to configure git
-  ansible.builtin.include_tasks: git.yml
+  ansible.builtin.import_tasks: git.yml
   tags: [user, user_git]
 
 - name: Import task to configure syncthing
-  ansible.builtin.include_tasks: syncthing.yml
+  ansible.builtin.import_tasks: syncthing.yml
   when: user.syncthing
   tags: [user, user_syncthing]

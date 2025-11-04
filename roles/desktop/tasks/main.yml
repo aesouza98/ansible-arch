@@ -1,19 +1,19 @@
 ---
 - name: Install Packages
-  ansible.builtin.include_tasks: packages.yml
+  ansible.builtin.import_tasks: packages.yml
   tags: [desktop, desktop_packages]
 
 - name: Include DE-specific config tasks
-  ansible.builtin.include_tasks: "{{ item }}.yml"
+  ansible.builtin.import_tasks: "{{ item }}.yml"
   loop: "{{ user.desktops }}"
   tags: [desktop, desktop_de]
 
 - name: Include uwsm autologin tasks
-  ansible.builtin.include_tasks: autologin.yml
+  ansible.builtin.import_tasks: autologin.yml
   when: user.display_manager == "uwsm"
   tags: [desktop, desktop_autologin]
 
 - name: Include DM tasks
-  ansible.builtin.include_tasks: dm.yml
+  ansible.builtin.import_tasks: dm.yml
   when: user.display_manager != "uwsm"
   tags: [desktop, desktop_dm]

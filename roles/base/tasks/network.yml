@@ -53,30 +53,31 @@
     state: started
   become: true
 
-# - name: Get wifi interface name
-#   ansible.builtin.command: 'nmcli -t -f DEVICE,TYPE device | grep ":wifi" | cut -d: -f1 | head -n1'
-#   register: base_wifi_iface_cmd
-#   changed_when: false
-#
-# - name: Set wifi interface fact
-#   ansible.builtin.set_fact:
-#     base_wifi_interface: "{{ base_wifi_iface_cmd.stdout }}"
-#
-# - name: Connect to Wi-Fi network using NetworkManager
-#   community.general.nmcli:
-#     type: wifi
-#     conn_name: "{{ wifi.ssid }}"
-#     ifname: "{{ base_wifi_interface }}"
-#     ssid: "{{ wifi.ssid }}"
-#     wifi_sec:
-#       key-mgmt: "wpa-psk"
-#       psk: "{{ wifi.password }}"
-#     autoconnect: true
-#     state: present
-#   become: true
-#
-# - name: Bring Wi-Fi connection up
-#   community.general.nmcli:
-#     conn_name: "{{ wifi.ssid }}"
-#     state: up
-#   become: true
+- name: Get wifi interface name
+  ansible.builtin.shell: 'nmcli -t -f DEVICE,TYPE device | grep ":wifi" | cut -d: -f1 | head -n1'
+  register: base_wifi_iface_cmd
+  changed_when: false
+
+- name: Set wifi interface fact
+  ansible.builtin.set_fact:
+    base_wifi_interface: "{{ base_wifi_iface_cmd.stdout }}"
+
+- name: Connect to Wi-Fi network using NetworkManager
+  community.general.nmcli:
+    type: wifi
+    conn_name: "{{ wifi.ssid }}"
+    ifname: "{{ base_wifi_interface }}"
+    ssid: "{{ wifi.ssid }}"
+    wifi_sec:
+      key-mgmt: "wpa-psk"
+      psk: "{{ wifi.password }}"
+    autoconnect: true
+    state: present
+  become: true
+
+- name: Bring Wi-Fi connection up
+  community.general.nmcli:
+    conn_name: "{{ wifi.ssid }}"
+    state: up
+  become: true
+  failed_when: false

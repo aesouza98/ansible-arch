@@ -1,12 +1,12 @@
 ---
 - name: Include tasks to install the driver
-  ansible.builtin.include_tasks: install.yml
+  ansible.builtin.import_tasks: install.yml
   tags: [nvidia, nvidia_install]
 
 - name: Include tasks to setup the bootloader
-  ansible.builtin.include_tasks: bootloader.yml
+  ansible.builtin.import_tasks: bootloader.yml
   tags: [nvidia, nvidia_bootloader]
 
 - name: Include tasks to setup the system -- early loading, hooks, blacklist nouveau
-  ansible.builtin.include_tasks: system_configs.yml
+  ansible.builtin.import_tasks: system_configs.yml
   tags: [nvidia, nvidia_system]

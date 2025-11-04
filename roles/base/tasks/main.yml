@@ -1,36 +1,36 @@
 ---
 - name: Import user create and config task
-  ansible.builtin.include_tasks: user.yml
+  ansible.builtin.import_tasks: user.yml
   tags: [base, base_user]
 
 - name: Import sudo config task
-  ansible.builtin.include_tasks: sudo.yml
+  ansible.builtin.import_tasks: sudo.yml
   tags: [base, base_sudo]
 
 - name: Import locales config task
-  ansible.builtin.include_tasks: locales.yml
+  ansible.builtin.import_tasks: locales.yml
   tags: [base, base_locales]
 
 - name: Import networking config task
-  ansible.builtin.include_tasks: network.yml
+  ansible.builtin.import_tasks: network.yml
   tags: [base, base_network]
 
 - name: Import pacman config tasks
-  ansible.builtin.include_tasks: pacman.yml
+  ansible.builtin.import_tasks: pacman.yml
   tags: [base, base_pacman]
 
 - name: Import AUR config tasks
-  ansible.builtin.include_tasks: aur.yml
+  ansible.builtin.import_tasks: aur.yml
   tags: [base, base_aur]
 
 - name: Import disk automount config task
-  ansible.builtin.include_tasks: disks.yml
+  ansible.builtin.import_tasks: disks.yml
   tags: [base, base_disks]
 
 - name: Import snapshots config task
-  ansible.builtin.include_tasks: snapshots.yml
+  ansible.builtin.import_tasks: snapshots.yml
   tags: [base, base_snapshots]
 
 - name: Import system packages installation
-  ansible.builtin.include_tasks: packages.yml
+  ansible.builtin.import_tasks: packages.yml
   tags: [base, base_packages]

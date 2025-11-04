@@ -1,20 +1,20 @@
 ---
 - name: Include tasks to install Virtualization Packages
-  ansible.builtin.include_tasks: packages.yml
+  ansible.builtin.import_tasks: packages.yml
   tags: [virtualization, virtualization_packages]
 
 - name: Include tasks to set up user for virtualization
-  ansible.builtin.include_tasks: user.yml
+  ansible.builtin.import_tasks: user.yml
   tags: [virtualization, virtualization_user]
 
 - name: Include tasks to enable virtualization services
-  ansible.builtin.include_tasks: services.yml
+  ansible.builtin.import_tasks: services.yml
   tags: [virtualization, virtualization_services]
 
 - name: Include tasks to set up the network for virtualization
-  ansible.builtin.include_tasks: network.yml
+  ansible.builtin.import_tasks: network.yml
   tags: [virtualization, virtualization_network]
 
 - name: Include tasks to set up performance for virtualization
-  ansible.builtin.include_tasks: performance.yml
+  ansible.builtin.import_tasks: performance.yml
   tags: [virtualization, virtualization_performance]
