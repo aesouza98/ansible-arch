@@ -1,4 +1,8 @@
 ---
+- name: Import task to configure ssh keys
+  ansible.builtin.include_tasks: ssh.yml
+  tags: [user, user_ssh]
+
 - name: Import dotfiles config task
   ansible.builtin.include_tasks: dotfiles.yml
   tags: [user, user_dotfiles]
