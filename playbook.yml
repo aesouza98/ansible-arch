@@ -4,17 +4,22 @@
   become: true
   roles:
     - role: base
-      tags: base
     - role: desktop
-      tags: desktop
     - role: user
-      tags: user
     - role: packages
-      tags: packages
 
   tasks:
     - name: Apply Nvidia role only if enabled
       ansible.builtin.import_role:
         name: nvidia
-      when: nvidia.enable | default(false)
-      tags: nvidia
+      when: nvidia_nvidia.enable | default(false)
+
+    - name: Apply Gaming role only if enabled
+      ansible.builtin.import_role:
+        name: gaming
+      when: gaming.enable | default(false)
+
+    - name: Apply Virtualization role only if enabled
+      ansible.builtin.import_role:
+        name: virtualization
+      when: virtualization.enable | default(false)

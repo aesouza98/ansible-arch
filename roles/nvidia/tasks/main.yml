@@ -1,81 +1,12 @@
 ---
-- name: Install base development packages
-  community.general.pacman:
-    name:
-      - base-devel
-      - linux-headers
-    state: present
-  tags: nvidia, base
-  become: true
+- name: Include tasks to install the driver
+  ansible.builtin.include_tasks: install.yml
+  tags: [nvidia, nvidia_install]
 
-- name: Install NVIDIA drivers and utilities
-  community.general.pacman:
-    name: "{{ nvidia.packages }}"
-    state: present
-  tags: nvidia, drivers
-  become: true
+- name: Include tasks to setup the bootloader
+  ansible.builtin.include_tasks: bootloader.yml
+  tags: [nvidia, nvidia_bootloader]
 
-- name: Ensure NVIDIA DRM modeset parameters are set in systemd-boot entries
-  ansible.builtin.lineinfile:
-    path: "{{ item }}"
-    regexp: '^options=(.*?)(\s+nvidia-drm\.modeset=1)?(\s+nvidia-drm\.fbdev=1)?(\s.*)?$'
-    line: 'options=\1 nvidia-drm.modeset=1 nvidia-drm.fbdev=1\4'
-    backrefs: true
-    create: false
-  loop: "{{ lookup('ansible.builtin.fileglob', '/boot/loader/entries/*.conf', wantlist=True) }}"
-  become: true
-  tags: nvidia, bootloader
-
-- name: Ensure NVIDIA modules are in MODULES array of mkinitcpio.conf
-  ansible.builtin.lineinfile:
-    path: /etc/mkinitcpio.conf
-    regexp: '^MODULES=.*$'
-    line: 'MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm)'
-    backrefs: true
-    create: false
-  become: true
-  notify: regenerate initramfs
-  tags: nvidia, mkinitcpio
-
-- name: Remove "kms" from HOOKS in mkinitcpio.conf
-  ansible.builtin.replace:
-    path: /etc/mkinitcpio.conf
-    regexp: '\bkms\b'
-    replace: ''
-  become: true
-  tags: nvidia, mkinitcpio
-
-- name: Ensure /etc/pacman.d/hooks exists
-  ansible.builtin.file:
-    path: /etc/pacman.d/hooks
-    state: directory
-    mode: '0755'
-  become: true
-  tags: nvidia, hook
-
-- name: Download NVIDIA pacman hook
-  ansible.builtin.template:
-    src: nvidia.hook.j2
-    dest: /etc/pacman.d/hooks/nvidia.hook
-    mode: '0644'
-  become: true
-  tags: nvidia, hook
-
-- name: Adjust pacman hook target to installed driver
-  ansible.builtin.replace:
-    path: /etc/pacman.d/hooks/nvidia.hook
-    regexp: '^Target=nvidia$'
-    replace: 'Target=nvidia'
-  become: true
-  tags: nvidia, hook
-
-- name: Blacklist nouveau driver
-  ansible.builtin.copy:
-    dest: /etc/modprobe.d/blacklist-nouveau.conf
-    content: |
-      # Disable Nouveau
-      blacklist nouveau
-      options nouveau modeset=0
-    mode: '0644'
-  become: true
-  tags: nvidia, blacklist
+- name: Include tasks to setup the system -- early loading, hooks, blacklist nouveau
+  ansible.builtin.include_tasks: system_configs.yml
+  tags: [nvidia, nvidia_system]

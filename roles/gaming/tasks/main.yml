@@ -1,0 +1,12 @@
+---
+- name: Install Gaming Packages
+  ansible.builtin.include_tasks: packages.yml
+  tags: [gaming, gaming_packages]
+
+- name: Configure Wine
+  ansible.builtin.include_tasks: wine.yml
+  tags: [gaming, gaming_wine]
+
+- name: Apply Gaming Optimizations
+  ansible.builtin.include_tasks: optimizations.yml
+  tags: [gaming, gaming_optimizations]

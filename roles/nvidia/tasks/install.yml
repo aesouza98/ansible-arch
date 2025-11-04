@@ -1,0 +1,16 @@
+---
+- name: Install base development packages
+  community.general.pacman:
+    name:
+      - base-devel
+      - linux-headers
+    state: present
+  tags: nvidia, nvidia_base
+  become: true
+
+- name: Install NVIDIA drivers and utilities
+  community.general.pacman:
+    name: "{{ nvidia_nvidia.packages }}"
+    state: present
+  tags: nvidia, drivers
+  become: true

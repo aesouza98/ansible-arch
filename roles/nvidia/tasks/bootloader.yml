@@ -1,0 +1,11 @@
+---
+- name: Ensure NVIDIA DRM modeset parameters are set in systemd-boot entries
+  ansible.builtin.lineinfile:
+    path: "{{ item }}"
+    regexp: '^options=(.*?)(\s+nvidia-drm\.modeset=1)?(\s+nvidia-drm\.fbdev=1)?(\s.*)?$'
+    line: 'options=\1 nvidia-drm.modeset=1 nvidia-drm.fbdev=1\4'
+    backrefs: true
+    create: false
+  loop: "{{ lookup('ansible.builtin.fileglob', '/boot/loader/entries/*.conf', wantlist=True) }}"
+  become: true
+  tags: nvidia, bootloader

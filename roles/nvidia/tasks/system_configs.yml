@@ -1,0 +1,54 @@
+---
+- name: Ensure NVIDIA modules are in MODULES array of mkinitcpio.conf
+  ansible.builtin.lineinfile:
+    path: /etc/mkinitcpio.conf
+    regexp: '^MODULES=.*$'
+    line: 'MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm)'
+    backrefs: true
+    create: false
+  become: true
+  notify: regenerate initramfs
+  tags: nvidia, mkinitcpio
+
+- name: Remove "kms" from HOOKS in mkinitcpio.conf
+  ansible.builtin.replace:
+    path: /etc/mkinitcpio.conf
+    regexp: '\bkms\b'
+    replace: ''
+  become: true
+  tags: nvidia, mkinitcpio
+
+- name: Ensure /etc/pacman.d/hooks exists
+  ansible.builtin.file:
+    path: /etc/pacman.d/hooks
+    state: directory
+    mode: '0755'
+  become: true
+  tags: nvidia, hook
+
+- name: Download NVIDIA pacman hook
+  ansible.builtin.template:
+    src: nvidia.hook.j2
+    dest: /etc/pacman.d/hooks/nvidia.hook
+    mode: '0644'
+  become: true
+  tags: nvidia, hook
+
+- name: Adjust pacman hook target to installed driver
+  ansible.builtin.replace:
+    path: /etc/pacman.d/hooks/nvidia.hook
+    regexp: '^Target=nvidia$'
+    replace: 'Target=nvidia'
+  become: true
+  tags: nvidia, hook
+
+- name: Blacklist nouveau driver
+  ansible.builtin.copy:
+    dest: /etc/modprobe.d/blacklist-nouveau.conf
+    content: |
+      # Disable Nouveau
+      blacklist nouveau
+      options nouveau modeset=0
+    mode: '0644'
+  become: true
+  tags: nvidia, blacklist
