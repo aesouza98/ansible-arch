@@ -1,0 +1,14 @@
+---
+- name: Ensure user is in libvirt group
+  ansible.builtin.user:
+    name: "{{ user.username }}"
+    groups: libvirt
+    append: true
+  become: true
+
+- name: Ensure user is in docker group
+  ansible.builtin.user:
+    name: "{{ user.username }}"
+    groups: docker
+    append: true
+  become: true

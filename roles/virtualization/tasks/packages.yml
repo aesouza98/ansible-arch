@@ -1,0 +1,17 @@
+---
+- name: Install virtualization and container packages
+  community.general.pacman:
+    name:
+      - qemu
+      - libvirt
+      - virt-manager
+      - edk2-ovmf
+      - bridge-utils
+      - dnsmasq
+      - ebtables
+      - virt-viewer
+      - docker
+      - docker-compose
+      - lazydocker
+    state: present
+  become: true

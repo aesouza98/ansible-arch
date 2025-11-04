@@ -1,0 +1,21 @@
+---
+- name: Enable and start libvirtd
+  ansible.builtin.systemd:
+    name: libvirtd
+    enabled: true
+    state: started
+  become: true
+
+- name: Enable and start virtlogd
+  ansible.builtin.systemd:
+    name: virtlogd
+    enabled: true
+    state: started
+  become: true
+
+- name: Enable and start docker
+  ansible.builtin.systemd:
+    name: docker
+    enabled: true
+    state: started
+  become: true
