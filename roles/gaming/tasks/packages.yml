@@ -4,6 +4,7 @@
     name: "{{ gaming_packages }}"
     state: present
   become: true
+  tags: [gaming, gaming_packages]
 
 - name: Install gaming aur packages
   become: true
@@ -12,3 +13,4 @@
     name: "{{ gaming_aur_packages }}"
     state: present
   failed_when: false
+  tags: [gaming, gaming_packages]

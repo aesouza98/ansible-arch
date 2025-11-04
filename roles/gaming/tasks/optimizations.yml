@@ -5,3 +5,4 @@
     enabled: true
     state: started
   become: true
+  tags: [gaming, gaming_optimizations]
