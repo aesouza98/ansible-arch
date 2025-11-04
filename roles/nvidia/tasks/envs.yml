@@ -1,0 +1,20 @@
+---
+- name: Ensure user paths dir exists
+  ansible.builtin.file:
+    path: "/home/{{ user.username }}/.config/shell/"
+    state: directory
+    mode: '0755'
+    owner: "{{ user.username }}"
+    group: "{{ user.group | default(user.username) }}"
+
+- name: Set Nvidia environment variables (dynamic)
+  ansible.builtin.blockinfile:
+    path: "/home/{{ user.username }}/.config/shell/env"
+    marker: "# {mark} ANSIBLE MANAGED: NVIDIA ENV VARS"
+    block: |
+      # NVIDIA environment overrides
+      {% for k, v in nvidia_nvidia.env_vars.items() %}
+      export {{ k }}="{{ v }}"
+      {% endfor %}
+  become: true
+  become_user: "{{ user.username }}"
