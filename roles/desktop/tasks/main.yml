@@ -4,7 +4,7 @@
   tags: [desktop, desktop_packages]
 
 - name: Include DE-specific config tasks
-  ansible.builtin.import_tasks: "{{ item }}.yml"
+  ansible.builtin.include_tasks: "{{ item }}.yml"
   loop: "{{ user.desktops }}"
   tags: [desktop, desktop_de]
 
