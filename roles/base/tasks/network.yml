@@ -31,11 +31,11 @@
     mode: "0644"
   become: true
 
-- name: Disable standalone iwd service (NetworkManager will handle it)
+- name: Enable iwd service
   ansible.builtin.systemd:
     name: iwd.service
-    enabled: false
-    state: stopped
+    enabled: true
+    state: started
   become: true
 
 - name: Disable wpa_supplicant if installed (conflicts with iwd)

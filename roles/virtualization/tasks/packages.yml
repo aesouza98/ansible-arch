@@ -12,6 +12,7 @@
       - virt-viewer
       - docker
       - docker-compose
+      - docker-buildx
       - lazydocker
     state: present
   become: true

@@ -8,7 +8,7 @@
     create: false
   become: true
   notify: regenerate initramfs
-  tags: nvidia, mkinitcpio
+  tags: nvidia, nvidia_sysconfig
 
 - name: Remove "kms" from HOOKS in mkinitcpio.conf
   ansible.builtin.replace:
@@ -16,7 +16,7 @@
     regexp: '\bkms\b'
     replace: ''
   become: true
-  tags: nvidia, mkinitcpio
+  tags: nvidia, nvidia_sysconfig
 
 - name: Ensure /etc/pacman.d/hooks exists
   ansible.builtin.file:
@@ -24,7 +24,7 @@
     state: directory
     mode: '0755'
   become: true
-  tags: nvidia, hook
+  tags: nvidia, nvidia_sysconfig
 
 - name: Download NVIDIA pacman hook
   ansible.builtin.template:
@@ -32,7 +32,7 @@
     dest: /etc/pacman.d/hooks/nvidia.hook
     mode: '0644'
   become: true
-  tags: nvidia, hook
+  tags: nvidia, nvidia_sysconfig
 
 - name: Adjust pacman hook target to installed driver
   ansible.builtin.replace:
@@ -40,7 +40,7 @@
     regexp: '^Target=nvidia$'
     replace: 'Target=nvidia'
   become: true
-  tags: nvidia, hook
+  tags: nvidia, nvidia_sysconfig
 
 - name: Blacklist nouveau driver
   ansible.builtin.copy:
@@ -51,4 +51,4 @@
       options nouveau modeset=0
     mode: '0644'
   become: true
-  tags: nvidia, blacklist
+  tags: nvidia, nvidia_sysconfig

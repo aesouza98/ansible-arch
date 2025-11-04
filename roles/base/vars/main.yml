@@ -14,17 +14,12 @@ base_system_packages:
   - wireplumber
 
 base_packages_essential:
-  # Navegação e leitura
   - less
   - tree
   - man-db
   - man-pages
   - texinfo
-
-  # Shell e completions
   - bash-completion
-
-  # Utilitários base
   - which
   - file
   - findutils
@@ -33,8 +28,6 @@ base_packages_essential:
   - unzip
   - zip
   - rsync
-
-  # Networking
   - net-tools
   - iproute2
   - openssh
@@ -42,8 +35,6 @@ base_packages_essential:
   - curl
   - socat
   - nmap
-
-  # Monitoramento / Debug
   - htop
   - strace
   - lsof
@@ -52,8 +43,6 @@ base_packages_essential:
   - sysstat
   - iotop
   - lsb-release
-
-  # FS e disco
   - dosfstools
   - exfatprogs
   - ntfs-3g
@@ -61,8 +50,9 @@ base_packages_essential:
   - e2fsprogs
   - xfsprogs
   - btrfs-progs
-
-  # Outros básicos
   - sudo
   - jq
   - tzdata
+  - fcitx5
+  - fcitx5-gtk
+  - fcitx5-qt

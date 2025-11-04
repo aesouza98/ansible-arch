@@ -6,11 +6,13 @@
     mode: '0755'
     owner: "{{ user.username }}"
     group: "{{ user.group | default(user.username) }}"
+  tags: nvidia, nvidia_envs
 
 - name: Set Nvidia environment variables (dynamic)
   ansible.builtin.blockinfile:
-    path: "/home/{{ user.username }}/.config/shell/env"
+    path: "/home/{{ user.username }}/.config/shell/envs"
     marker: "# {mark} ANSIBLE MANAGED: NVIDIA ENV VARS"
+    prepend_newline: true
     block: |
       # NVIDIA environment overrides
       {% for k, v in nvidia_nvidia.env_vars.items() %}
@@ -18,3 +20,4 @@
       {% endfor %}
   become: true
   become_user: "{{ user.username }}"
+  tags: nvidia, nvidia_envs

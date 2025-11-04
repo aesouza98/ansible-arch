@@ -7,6 +7,7 @@
     group: "{{ user.group }}"
     mode: "0755"
   become: true
+  become_user: "{{ user.username }}"
 
 - name: Clone dotfiles repository
   ansible.builtin.git:
@@ -26,11 +27,21 @@
     state: present
   become: true
 
+- name: Ensure .local directory exists -- if not, may conflict with stow
+  ansible.builtin.file:
+    path: "/home/{{ user.username }}/.local"
+    state: directory
+    owner: "{{ user.username }}"
+    group: "{{ user.group }}"
+    mode: "0755"
+  become: true
+  become_user: "{{ user.username }}"
+
 - name: Apply dotfiles using stow
   ansible.builtin.command:
-    cmd: "stow --dotfiles --target=/home/{{ user.username }} ."
+    cmd: "stow --dotfiles -t ~/ ."
     chdir: "{{ user.dotfiles.path }}"
-    creates: "/home/{{ user.username }}/.zshrc/"
+    creates: "/home/{{ user.username }}/.zshrc"
   become: true
   become_user: "{{ user.username }}"
 

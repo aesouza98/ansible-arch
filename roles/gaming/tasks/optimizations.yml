@@ -4,5 +4,7 @@
     name: gamemoded
     enabled: true
     state: started
+    scope: user
   become: true
+  become_user: "{{ user.username }}"
   tags: [gaming, gaming_optimizations]

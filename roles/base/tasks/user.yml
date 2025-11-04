@@ -15,6 +15,7 @@
     name: '{{ user.username }}'
     comment: '{{ user.description }}'
     shell: "{{ base_shell_path.stdout }}"
+    password: '{{ user.password }}'
     groups: wheel
     append: true
     create_home: true

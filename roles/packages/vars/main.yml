@@ -15,6 +15,7 @@ packages_system:
   - xdg-user-dirs
   - xdg-user-dirs-gtk
   - zlib
+  - ffmpegthumbnailer
 
 packages_cli:
   - ansible
@@ -26,6 +27,7 @@ packages_cli:
   - fd
   - fzf
   - ghostty
+  - impala
   - jq
   - lazygit
   - 7zip
@@ -60,6 +62,8 @@ packages_desktop:
   - localsend
   - obsidian
   - syncthing
+  - mpv
+  - vlc
 
 packages_aur:
   - afetch

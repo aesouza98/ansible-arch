@@ -1,4 +1,10 @@
 ---
+- name: Install ntfs-3g
+  community.general.pacman:
+    name: ntfs-3g
+    state: present
+  become: true
+
 - name: Ensure mount points exist
   ansible.builtin.file:
     path: "/{{ item.key }}"

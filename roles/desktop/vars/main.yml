@@ -5,7 +5,6 @@ desktop_packages:
       - hyprland
       - blueberry
       - dconf
-      - elephant
       - ghostty
       - grim
       - hyprlock
@@ -13,14 +12,15 @@ desktop_packages:
       - kitty
       - libnotify
       - mako
+      - omarchy-walker
       - polkit-gnome
       - swaybg
       - swayosd
       - waybar
-      - walker
       - wofi
       - pavucontrol
       - pamixer
+      - wiremix
       # Clipboard
       - cliphist
       - wl-clip-persist
@@ -33,10 +33,14 @@ desktop_packages:
       - yaru-icon-theme
       # GNOME // Nautilus
       - gnome-calculator
+      - gnome-keyring
       - file-roller
       - gsettings-desktop-schemas
       - nautilus
       - sushi
+      # Desktop portals
+      - xdg-desktop-portal-hyprland
+      - xdg-desktop-portal-gtk
     display_manager: "uwsm"
   gnome:
     packages:

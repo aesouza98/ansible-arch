@@ -5,12 +5,12 @@
       - base-devel
       - linux-headers
     state: present
-  tags: nvidia, nvidia_base
+  tags: nvidia, nvidia_install
   become: true
 
 - name: Install NVIDIA drivers and utilities
   community.general.pacman:
     name: "{{ nvidia_nvidia.packages }}"
     state: present
-  tags: nvidia, drivers
+  tags: nvidia, nvidia_install
   become: true
