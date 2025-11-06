@@ -3,10 +3,12 @@ desktop_packages:
     packages:
       # Hyprland
       - hyprland
+      - niri
       - blueberry
       - dconf
       - ghostty
       - grim
+      - fuzzel
       - hyprlock
       - hyprshot
       - kitty
@@ -41,14 +43,10 @@ desktop_packages:
       # Desktop portals
       - xdg-desktop-portal-hyprland
       - xdg-desktop-portal-gtk
-    display_manager: "uwsm"
-  gnome:
+    display_manager: "sddm"
+  niri:
     packages:
-      - gnome
-      - gdm
-    display_manager: "gdm"
-  kde:
-    packages:
-      - plasma
-      - sddm
+      - niri
+      - xdg-desktop-portal-gtk
+      - fuzzel
     display_manager: "sddm"

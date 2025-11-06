@@ -1,0 +1,33 @@
+---
+# Ensure xdg-user-dirs
+- name: Install xdg-user-dirs
+  community.general.pacman:
+    name: xdg-user-dirs
+    state: present
+  become: true
+  tags: [desktop, desktop_de]
+
+- name: Create user directories
+  ansible.builtin.command: xdg-user-dirs-update
+  become: true
+  become_user: "{{ user.username }}"
+  changed_when: false
+  tags: [desktop, desktop_de]
+
+- name: Ensure psutil is installed for dconf module
+  community.general.pacman:
+    name: python-psutil
+    state: present
+  become: true
+  tags: [desktop, desktop_de]
+
+- name: Apply GNOME dconf tweaks
+  community.general.dconf:
+    key: "{{ item.key }}"
+    value: "{{ item.value }}"
+  loop:
+    - { key: "/org/gnome/desktop/interface/color-scheme", value: "'prefer-dark'" }
+    - { key: "/org/gnome/desktop/interface/icon-theme", value: "'Yaru-blue'" }
+  become: true
+  become_user: "{{ user.username }}"
+  tags: [desktop, desktop_de]
